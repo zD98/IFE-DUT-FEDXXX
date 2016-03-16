@@ -1,0 +1,434 @@
+/*reset*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a, a:visited, a:link {
+    text-decoration: none;
+    color: #000;
+}
+
+ul {
+    list-style: none;
+}
+
+select {
+    /*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
+    border: solid 1px #000;
+    /*将默认的select选择框样式清除*/
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+/**/
+html {
+
+}
+
+body {
+    font-family: Microsoft YaHei;
+    font-size: 14px;
+    min-width: 1280px;
+    width: 100%;
+    background: #fff;
+    margin: 0 auto;
+}
+
+/*Head 部分*/
+header {
+    width: 100%;
+    height: 56px;
+    margin: 0 auto;
+}
+
+header h1 {
+    position: relative;
+    display: inline-block;
+    color: #000;
+    font-family: SimHei;
+    font-size: 21px;
+    height: 56px;
+    line-height: 56px;
+}
+
+header .logo {
+    position: relative;
+    display: inline-block;;
+    line-height: 30px;
+    height: 30px;
+}
+
+.logo .h-icon {
+    float: left;
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin-left: 59px;
+    margin-right: 12px;
+    background: url("../image/h-icon.png") no-repeat;
+}
+
+header nav {
+    position: relative;
+    display: inline-block;
+    line-height: 56px;
+    float: right;
+}
+
+nav a {
+    display: inline-block;
+    color: #787b83;
+    height: 56px;
+    width: 64px;
+    margin: 0 13px;
+    text-align: center;
+}
+
+nav a:first-child {
+    margin-left: 0;
+}
+
+nav a:hover {
+    color: #e74f4d;
+    height: 52px;
+    margin-bottom: -4px;
+    border-bottom: 4px solid #e74f4d;
+}
+
+.login {
+    display: inline-block;
+    margin-right: 59px;
+    float: right;
+    height: 56px;
+    line-height: 56px;
+}
+
+.login a {
+    color: #e74f4d;
+    height: 16px;
+    line-height: 16px;
+    display: inline-block;
+}
+
+.l-icon {
+    width: 16px;
+    height: 16px;
+    float: left;
+    display: block;
+    background: url("../image/l-icon.png");
+    margin-right: 5px;
+}
+
+/*Main 部分*/
+section {
+    width: 100%;
+    min-width: 1280px;
+}
+
+.sec-fst {
+    position: relative;
+    width: 100%;
+    min-width: 1280px;
+    height: 690px;
+
+}
+
+.sec-fst .mask {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    filter: opacity(0.2);
+    -webkit-filter: opacity(0.2);
+}
+
+.fst-bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+}
+
+.sec-fst article {
+}
+
+article .title-en {
+    position: absolute;
+    margin-top: 230px;
+    margin-left: 116px;
+    width: 460px;
+    font-family: "Microsoft YaHei";
+    font-size: 60px;
+    color: white;
+    cursor: default;
+}
+
+article .title-cn {
+    position: absolute;
+    margin-top: 310px;
+    margin-left: 124px;
+    font-size: 21px;
+    width: 293px;
+    color: white;
+    cursor: default;
+}
+
+.begin {
+    position: absolute;
+    height: 66px;
+    width: 330px;
+    margin-left: 126px;
+    margin-top: 429px;
+    background: #e74f4d;
+}
+
+.begin .btn {
+    display: inline-block;
+    height: 66px;
+    line-height: 66px;
+    font-size: 30px;
+    text-align: center;
+    color: white;
+    width: 330px;
+}
+
+.sec-sec {
+    background: #fff;
+    width: 1280px;
+    margin: 0 auto;
+    height: 250px;
+}
+
+.sec-sec .sec-block {
+    position: relative;
+    display: block;
+    float: left;
+    width: 320px;
+}
+
+.sec-block img {
+    margin-top: 46px;
+    display: block;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sec-sec .title {
+    margin-top: 45px;
+    height: 50px;
+    font-size: 14px;
+    text-align: center;
+    padding: 0 80px;
+    border-left: 2px solid #aba6a5;
+    color: #767777;
+    font-family: SimHei;
+    cursor: default;
+}
+
+.sec-sec .sec-block:first-child .title {
+    border-left: none;
+}
+
+.sec-trd {
+    display: block;
+    position: relative;
+    min-width: 1280px;
+    margin: 0 auto;
+    height: 360px;
+    background: #ededec;
+}
+
+.sec-trd img {
+    position: relative;
+    display: block;
+    top: 89px;
+    margin: 0 auto;
+}
+
+.sec-trd .title {
+    text-align: center;
+    display: block;
+    margin: 139px auto 0 auto;
+    font-size: 54px;
+    cursor: default;
+}
+
+.sec-fou {
+    position: relative;
+    width: 100%;
+    min-width: 1280px;
+    height: 340px;
+}
+
+/*z-index relative计算relative的  absolute计算absolute*/
+.sec-fou img {
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    position: absolute;
+    display: block;
+}
+
+.sec-fou .mask {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #aa3433;
+    filter: opacity(0.2);
+    -webkit-filter: opacity(0.2);
+    z-index: -1;
+}
+
+.sec-fou .title {
+    display: block;
+    position: relative;
+
+    margin: 0 auto;
+    text-align: center;
+    /*padding-top: 53px ;*/
+}
+
+/*relative 下的top计算很有意思啊  top = 上个top+ 间距  无视了元素的高度 刷新又计算了 */
+.sec-fou .title p {
+    display: block;
+    position: relative;
+    top: 82px;
+    /*margin-top: 29px;*/
+    font-size: 12px;
+    color: #fff;
+}
+
+.sec-fou .title .hsd {
+    display: block;
+    position: relative;
+    width: 30px;
+    height: 2px;
+    background: #fff;
+    top: 63px;
+    margin: 0 auto;
+    /*margin: 10px auto 0 auto;*/
+}
+
+.sec-fou .title h3 {
+    display: block;
+    position: relative;
+    font-weight: normal;
+    font-size: 21px;
+    color: #fff;
+    top: 53px;
+}
+
+.sec-fou .search {
+    top: 134px;
+    position: relative;
+    margin: 0 auto;
+    display: block;
+}
+
+.search .select-item {
+    display: block;
+    float: left;
+    margin: 0 14px;
+}
+
+.select-item a {
+    display: block;
+    width: 222px;
+    height: 35px;
+    background: #fff;
+    line-height: 35px;
+    padding-left: 13px;
+    color: #a8aaaa;
+}
+
+.select-item a .down {
+    float: right;
+    width: 18px;
+    height: 17px;
+    background: #be4e48;
+    margin: 9px 9px 9px 0;
+    line-height: 17px;
+}
+
+.down i {
+    display: block;
+    width: 13px;
+    height: 7px;
+    background: url("../image/8.png");
+    margin-left: 2px;
+    margin-top: 5px;
+
+}
+
+.select-btn {
+    position: relative;
+    display: inline-block;
+    width: 235px;
+    height: 35px;
+    line-height: 35px;
+    background: #be4e48;
+    color: #fff;
+    text-align: center;
+}
+
+.select-btn a {
+    color: #fff;
+}
+
+.select-item .selected {
+    outline: 1px #c56a5d solid;
+}
+
+.options {
+    background: #e3e3e4;
+    width: 235px;
+    outline: solid 1px #c56a5d;
+    padding-bottom: 19px;
+}
+
+.options li {
+    padding-left: 32px;
+    width: 203px;
+    height: 26px;
+    line-height: 26px;
+}
+
+.options li:hover {
+    z-index: 3;
+    background: #be4e48;
+    color: #fff;
+}
+
+.options li i {
+    display: none;
+    background: url("../image/7.png");
+}
+
+.options li:hover i {
+    display: block;
+    width: 12px;
+    height: 8px;
+    float: left;
+    margin-left: -21px;
+    margin-top: 8px;
+}
+
+.sec-fif {
+
+}
+
+.sec-six {
+
+}
+
+.sec-sev {
+
+}
+
+.sec-eit {
+
+}
