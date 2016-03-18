@@ -3,7 +3,6 @@
   margin: 0;
   padding: 0;
 }
-
 h1,
 h1,
 h3,
@@ -14,19 +13,16 @@ h6,
   font-weight: normal;
   font-size: 21px;
 }
-
 h2,
 p {
   text-align: center;
 }
-
 h2,
 p,
 div,
 img {
   position: relative;
 }
-
 a,
 a:visited,
 a:link,
@@ -35,7 +31,6 @@ h2 {
   text-decoration: none;
   color: inherit;
 }
-
 p,
 input,
 textarea,
@@ -46,13 +41,11 @@ textarea,
 ul {
   list-style: none;
 }
-
 input:focus,
 button:focus,
 textarea {
   outline: none;
 }
-
 input,
 button {
   border: none;
@@ -64,12 +57,10 @@ select {
   -moz-appearance: none;
   -webkit-appearance: none;
 }
-
 .i-box {
   display: inline-block;
   font-size: 0;
 }
-
 .btn {
   display: block;
   text-align: center;
@@ -77,48 +68,39 @@ select {
   margin: 0 auto;
   border: 1px solid;
 }
-
 .hsd {
   width: 30px;
   height: 2px;
   margin: 0 auto;
 }
-
 .clearfix:after {
   clear: both;
   content: ".";
   height: 0;
   display: block;
 }
-
 .w1of2 {
   width: 50%;
   float: left;
 }
-
 .w1of3 {
   width: 33.3%;
   float: left;
 }
-
 .w2of3 {
   width: 66.7%;
   float: left;
 }
-
 .w1of4 {
   width: 25%;
 }
-
 .text-box div {
   margin: 0 auto;
 }
-
 .text-box img {
   display: block;
   margin: 0 auto;
 }
-
 .mask {
   position: absolute;
   float: left;
@@ -128,7 +110,6 @@ select {
   -webkit-filter: opacity(0.2);
   z-index: -1;
 }
-
 /**/
 body {
   font-family: Microsoft YaHei;
@@ -237,14 +218,12 @@ nav a:hover {
   cursor: default;
   color: white;
 }
-
 .sec-fst article .title-en {
   margin-top: 230px;
   margin-left: 116px;
   font-family: "Microsoft YaHei";
   font-size: 60px;
 }
-
 .sec-fst article .title-cn {
   margin-left: 124px;
 }
@@ -265,12 +244,10 @@ nav a:hover {
 .sec-sec {
   height: 250px;
 }
-
 .sec-block {
   margin-top: 46px;
   cursor: default;
 }
-
 .sec-block .title {
   margin-top: 45px;
   height: 50px;
@@ -280,7 +257,6 @@ nav a:hover {
   color: #767777;
   font-family: SimHei;
 }
-
 .sec-block:first-child .title {
   border-left: none;
 }
@@ -318,12 +294,10 @@ nav a:hover {
   background: #fff;
   top: 63px;
 }
-
 .sec-fou .title h2 {
   font-weight: normal;
   top: 53px;
 }
-
 .sec-fou .mask {
   background: #aa3433;
 }
@@ -333,7 +307,6 @@ nav a:hover {
   display: block;
   width: 1062px;
 }
-
 .sec-fou .search .select-item {
   display: inline-block;
   width: 235px;
@@ -342,7 +315,6 @@ nav a:hover {
   line-height: 35px;
   background: #fff;
 }
-
 .sec-fou .search .select-item a {
   display: block;
   width: 222px;
@@ -350,7 +322,6 @@ nav a:hover {
   padding-left: 13px;
   color: #000;
 }
-
 .sec-fou .search .select-item a .down {
   float: right;
   width: 18px;
@@ -359,7 +330,6 @@ nav a:hover {
   height: 17px;
   line-height: 17px;
 }
-
 .sec-fou .search .select-item a .down i {
   display: block;
   width: 13px;
@@ -368,21 +338,18 @@ nav a:hover {
   margin-left: 2px;
   margin-top: 5px;
 }
-
 .sec-fou .search .btn {
   display: inline-block;
   background: #be4e48;
   color: #fff;
   border: none;
 }
-
 .sec-fou .search .btn a {
   color: #fff;
 }
 .select-item .selected {
   outline: 1px #c56a5d solid;
 }
-
 .selected + .options {
   display: block;
 }
@@ -427,13 +394,11 @@ nav a:hover {
 .activity-list {
   margin-top: 100px;
 }
-
 .photo-box {
   margin: 0 auto;
   width: 219px;
   overflow: hidden;
 }
-
 .photo-box .photo {
   border: 1px solid #d9d5d4;
   border-bottom: none;
@@ -464,11 +429,9 @@ nav a:hover {
   position: absolute;
   top: 0;
 }
-
 .activity-list li:hover .ac-title p {
   margin: 6px 0;
 }
-
 .activity-list li:hover .ac-title h2 {
   font-size: 20px;
   letter-spacing: 30px;
@@ -479,7 +442,6 @@ nav a:hover {
 .sec-six .bg {
   width: 66.4%;
 }
-
 .sec-six .bg img {
   width: 100%;
 }
@@ -557,7 +519,6 @@ nav a:hover {
 .sec-sev .bg {
   width: 33.6%;
 }
-
 .sec-sev .bg img {
   width: 100%;
 }
@@ -581,7 +542,6 @@ nav a:hover {
   height: 40px;
   line-height: 40px;
 }
-
 .other-item {
   padding-top: 20%;
   flex: 1;
@@ -649,18 +609,15 @@ nav a:hover {
   float: left;
   width: 290px;
 }
-
 .treaty-box {
   margin-bottom: 39px;
 }
-
 .treaty-box h2 {
   font-size: 14px;
   color: #595757;
   margin-bottom: 20px;
   text-align: left;
 }
-
 .treaty-box p {
   font-family: Arial;
   color: #9a9b9b;
@@ -782,13 +739,11 @@ footer .connect {
   overflow: hidden;
   position: relative;
 }
-
 .bottom .copyright {
   float: left;
   margin-left: 100px;
   margin-top: 30px;
 }
-
 .bottom .back {
   float: right;
   margin-right: 40px;
