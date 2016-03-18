@@ -1,0 +1,57 @@
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.container, .container *{
+  box-sizing: border-box;
+}
+
+.generate-columns(12,xl);
+.generate-columns(@n, @w ,@i: 1) when (@i =< @n) {
+  .col-@{w}-@{i} {
+    width: (@i * 100% / @n);
+  }
+  .generate-columns(@n,@w, (@i + 1));
+}
+
+.col-xl-1{
+  float: left;
+}
+
+.generate-xl-ss(12);
+
+.generate-xl-ss(@n,@i: 2 ) when(@i =< @n) {
+
+  .col-xl-@{i}{
+    &:extend(.col-xl-1);
+  }
+  .generate-xl-ss(@n,(@i + 1));
+}
+
+
+
+@media (min-width: 768px) {
+  .generate-columns(12,md);
+  .col-md-1{
+    float: left;
+  }
+  .generate-md-ss(12);
+
+  .generate-md-ss(@n,@i: 2 ) when(@i =< @n) {
+
+    .col-md-@{i}{
+      &:extend(.col-md-1);
+    }
+    .generate-md-ss(@n,(@i + 1));
+  }
+}
+
+.content{
+  height: 50px;
+  border: 1px solid #999;
+  background: #eee;
+  width: auto;
+  margin:10px;
+}
