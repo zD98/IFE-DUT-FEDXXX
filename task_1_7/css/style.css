@@ -486,7 +486,7 @@ nav a:hover {
 }
 .segment .btn {
   width: 104px;
-  border: #e46969;
+  border-color: #e46969;
   color: #e46969;
   margin-top: 50px;
   height: 32px;
@@ -514,7 +514,7 @@ nav a:hover {
   width: 100%;
   display: flex;
   flex-direction: row;
-  margin-top: -5px;
+  top: -5px;
 }
 .sec-sev .bg {
   width: 33.6%;
