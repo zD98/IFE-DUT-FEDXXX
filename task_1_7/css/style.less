@@ -1,5 +1,22 @@
 @red-color: #e74f4d;
 @white-color: #fff;
+.opacity(@o) {
+  filter: opacity(@o);
+  -webkit-filter: opacity(0.2);
+}
+
+//垂直居中
+.v-center(@height) {
+  height: @height;
+  line-height: @height;
+}
+
+.icon(@url,@w,@h) {
+  width: @w;
+  height: @h;
+  display: block;
+  background: url("/@{url}") no-repeat;
+}
 /*reset*/
 * {
   margin: 0;
@@ -74,29 +91,7 @@ select {
   display: block;
 }
 
-.opacity(@o) {
-  filter: opacity(@o);
-  -webkit-filter: opacity(0.2);
-}
 
-//垂直居中
-.v-center(@height) {
-  height: @height;
-  line-height: @height;
-}
-
-//水平居中
-.h-center-block(@width) {
-  width: @width;
-  margin: 0 auto;
-}
-
-.icon(@url,@w,@h) {
-  width: @w;
-  height: @h;
-  display: block;
-  background: url("/@{url}") no-repeat;
-}
 
 .w1of2 {
   width: 50%;
@@ -120,10 +115,12 @@ select {
 .text-box {
   div {
     margin: 0 auto;
+    text-align: center;
   }
   img {
     display: block;
     margin: 0 auto;
+
   }
 }
 
@@ -176,7 +173,7 @@ header .logo {
   float: left;
   margin-left: 59px;
   margin-right: 12px;
-  .icon("../image/h-icon.png", 30px, 30px);
+  .icon("../../image/h-icon.png", 30px, 30px);
 }
 
 header nav {
@@ -219,7 +216,7 @@ nav a {
 .l-icon {
   float: left;
   margin-right: 5px;
-  .icon("../image/l-icon.png", 16px, 16px)
+  .icon("../../image/l-icon.png", 16px, 16px)
 }
 
 /*Main 部分*/
@@ -509,9 +506,30 @@ nav a {
 
 .sec-six .bg {
   width: 66.4%;
+  color: #fff;
   img {
     width: 100%;
   }
+  .text-box{
+    margin-top: 130/566*100%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+  .new-world{
+    font-size: 49.5px;
+    line-height: 50px;
+  }
+  .time{
+    font-size:157.8px ;
+    line-height: 160px;
+  }
+  .date{
+    font-size: 21.9px;
+    line-height: 22px;
+  }
+
 }
 
 .sec-six .other {
