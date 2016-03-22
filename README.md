@@ -1,10 +1,10 @@
 ##IFE-DUT-团队
 ###branch-王振东
 
-    1. 通过HTML/CSS完成了页面的实现
-    2. 95%还原度  剩下的5%是 关于自适应宽度的
-    3. 自己的改动:
+Task1-7独立完成
+Task1-8独立完成
+Task1-9完成第三部分(四个表格)
 
-        第6，7板块是自适应宽度的  img高度跟着改变
-        第5个板块添加了hover的效果
-        顶部的nav添加了hover的效果
+Task2-36
+developing -
+finish A-star
