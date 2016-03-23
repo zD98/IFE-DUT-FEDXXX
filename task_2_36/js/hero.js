@@ -3,47 +3,85 @@
  */
 var hero = function(){
 
-  var direction = "";
-  //0:up  1:right 2:down 3:left
-  var state = 0;
 
-  var element = null;
+  //0:up  1:right 2:down 3:left
+  var direct = 0;
+  var actions = [];
+  var state = {
+    go:go,
+    tun:tun,
+    tra:tra,
+    mov:mov
+  };
   return {
-    changeStates:changeStates
+    receiveActions:receive
   };
 
-  function changeStates(actions){
-
+  function receive(cmds){
+    actions.concat(cmds);
   }
 
-  function changeState(action){
-
+  function go(steps){
+    move(direct,steps);
+  }
+  function tun(dir){
+    switch (dir) {
+      case "LEF":
+        direct = --direct>0?direct:direct+=4;
+        break;
+      case "RIG":
+        direct = ++direct<4?direct:direct-=4;
+        break;
+      case "BAC":
+        direct = direct+=2<4?direct:direct-=4;
+        break;
+    }
+    turn(dir)
+  }
+  function tra(dir,steps){
+    move(dir,steps)
+  }
+  function mov(dir,steps){
+    switch (dir){
+      case "LEF":
+        direct = 3;
+        break;
+      case "RIG":
+        direct = 1;
+        break;
+      case "TOP":
+        direct = 0;
+        break;
+      case "BOT":
+        direct = 2;
+    }
+    turn(dir);
+    go(steps);
   }
   function move(direction, steps){
     switch (direction){
-      case 'top':
+      case 0:
         break;
-      case 'left':
+      case 1:
         break;
-      case 'down':
+      case 2:
         break;
-      case 'right':
+      case 3:
         break
     }
   }
   function turn(direction){
     switch (direction){
-      case 'left':
-        state = --state>0?state:state+=4;
-
+      case 0:
         break;
-      case 'right':
-        state = ++state<4?state:state-=4;
+      case 1:
         break;
-      case 'back':
-        state = state+=2<4?state:state-=4;
+      case 2:
+        break;
+      case 3:
         break;
       default:
+
     }
   }
 }();

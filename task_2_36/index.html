@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="js/a.search.js"></script>
+    <!--<script src="js/a.search.js"></script>-->
+    <script src="js/analysis.js"></script>
 </head>
 <body>
 <textarea name="" id="textarea" cols="30" rows="10"></textarea>
@@ -12,11 +13,9 @@
     var btn = document.querySelector('button');
     var text = document.querySelector('textarea');
     btn.addEventListener('click',function(){
-        var str = text.value.split(/\r|\n|\s/);
-        console.log(str);
-    })
+        console.log(analysis.analyze(text.value));
+    });
 
-    console.log("123".match(/^[0-9]*$/));
 </script>
 </body>
 </html>
