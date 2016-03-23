@@ -6,6 +6,17 @@
     <script src="js/a.search.js"></script>
 </head>
 <body>
+<textarea name="" id="textarea" cols="30" rows="10"></textarea>
+<button type="button">获取内容</button>
+<script>
+    var btn = document.querySelector('button');
+    var text = document.querySelector('textarea');
+    btn.addEventListener('click',function(){
+        var str = text.value.split(/\r|\n|\s/);
+        console.log(str);
+    })
 
+    console.log("123".match(/^[0-9]*$/));
+</script>
 </body>
 </html>
