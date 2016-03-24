@@ -27,7 +27,7 @@ var analysis = function(){
         break;
       }
     }
-    if(i){
+    if(tag){
       console.log(i,'wrong');
     }
     return commands;
@@ -38,12 +38,13 @@ var analysis = function(){
   }
   function isNum(str){
     var step = null;
-    if(str==undefined){
-      step = 1;
-    }else if(str.match(/^[0-9]*$/)){
-      step = parseInt(str)
+    if(str!=undefined){
+      str = str.trim();
+      if(str.match(/^[0-9]*$/)) {
+        step = parseInt(str)
+      }
     }else{
-      return false;
+      step =1;
     }
     return step;
   }

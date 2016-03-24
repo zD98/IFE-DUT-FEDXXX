@@ -5,6 +5,7 @@
     <title>Title</title>
     <!--<script src="js/a.search.js"></script>-->
     <script src="js/analysis.js"></script>
+    <script src="js/hero.js"></script>
     <style>
         *{
             margin: 0;;
@@ -214,15 +215,14 @@
 <script>
     var btn = document.querySelector('button');
     var text = document.querySelector('textarea');
-    var hero = document.querySelector('.hero');
-
+    var grid = document.querySelector('.hero');
+    hero.init(grid);
     btn.addEventListener('click',function(){
-        hero.style.transform = "matrix(0,-1,1,0,0,0)";
-        console.log(hero.offsetLeft);
+        var cmds = analysis.analyze(text.value);
+        console.log(cmds);
+        hero.receiveActions(cmds);
     });
-    hero.addEventListener('transitionend',function(){
-        hero.style.transform = "matrix(0,-1,1,0,100,0)";
-    })
+
 </script>
 </body>
 </html>
