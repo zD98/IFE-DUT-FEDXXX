@@ -5,17 +5,224 @@
     <title>Title</title>
     <!--<script src="js/a.search.js"></script>-->
     <script src="js/analysis.js"></script>
+    <style>
+        *{
+            margin: 0;;
+            padding:0;;
+        }
+        .map{
+            /*overflow: hidden;*/
+            margin: 10px;;
+        }
+        .map:after{
+            display: block;
+            content: ".";
+            width: 0;
+            height: 0;
+            visibility: hidden;
+            clear: both;
+        }
+        .grid{
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+        }
+        .map .row{
+            margin-left: 50px;;
+            width: 500px;;
+        }
+        .map .row:after{
+            display: block;
+            content: ".";
+            width: 0;
+            height: 0;
+            visibility: hidden;
+            clear: both;
+        }
+        .map .row .grid{
+            float: left;
+        }
+        .map .column{
+            width: 50px;;
+            float: left;
+        }
+        .map .grid-map{
+            position: relative;
+            outline: 2px solid #111;
+            width: 500px;
+            height: 500px;
+            float: left;
+        }
+        .map .grid-map .grid{
+            float: left;
+            outline: 1px solid #999;
+        }
+        .map .hero{
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: #f00;
+            transition: transform 2s;
+        }
+        .map .hero .head{
+            width: 50px;
+            height: 13px;
+            background: #00f;
+        }
+    </style>
 </head>
 <body>
-<textarea name="" id="textarea" cols="30" rows="10"></textarea>
-<button type="button">获取内容</button>
+<div>
+    <div class="map">
+        <div class="row">
+            <div class="grid">1</div>
+            <div class="grid">2</div>
+            <div class="grid">3</div>
+            <div class="grid">4</div>
+            <div class="grid">5</div>
+            <div class="grid">6</div>
+            <div class="grid">7</div>
+            <div class="grid">8</div>
+            <div class="grid">9</div>
+            <div class="grid">10</div>
+        </div>
+        <div class="column">
+            <div class="grid">1</div>
+            <div class="grid">2</div>
+            <div class="grid">3</div>
+            <div class="grid">4</div>
+            <div class="grid">5</div>
+            <div class="grid">6</div>
+            <div class="grid">7</div>
+            <div class="grid">8</div>
+            <div class="grid">9</div>
+            <div class="grid">10</div>
+        </div>
+        <div class="grid-map">
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="grid"></div>
+            <div class="hero">
+                <div class="head"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="wrap">
+    <textarea name="" id="textarea" cols="30" rows="10"></textarea>
+    <button type="button">获取内容</button>
+</div>
 <script>
     var btn = document.querySelector('button');
     var text = document.querySelector('textarea');
-    btn.addEventListener('click',function(){
-        console.log(analysis.analyze(text.value));
-    });
+    var hero = document.querySelector('.hero');
 
+    btn.addEventListener('click',function(){
+        hero.style.transform = "matrix(0,-1,1,0,0,0)";
+        console.log(hero.offsetLeft);
+    });
+    hero.addEventListener('transitionend',function(){
+        hero.style.transform = "matrix(0,-1,1,0,100,0)";
+    })
 </script>
 </body>
 </html>

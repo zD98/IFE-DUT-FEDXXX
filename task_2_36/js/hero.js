@@ -7,6 +7,8 @@ var hero = function(){
   //0:up  1:right 2:down 3:left
   var direct = 0;
   var actions = [];
+  var element = null;
+  var martix = [1,0,0,1,0,0];
   var state = {
     go:go,
     tun:tun,
@@ -59,8 +61,11 @@ var hero = function(){
     go(steps);
   }
   function move(direction, steps){
+    var top = element.offsetLeft,
+      left = element.offsetTop;
     switch (direction){
       case 0:
+
         break;
       case 1:
         break;
