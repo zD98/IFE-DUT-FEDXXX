@@ -30,6 +30,9 @@ var hero = function(){
   function runInPath(path){
     var ox,oy,cx,cy,
       horizon = false,vertical = false;
+    if(path.length==0){
+      return;
+    }
     ox= cx = path[0].x; oy= cy = path[0].y;
     for(var i = 1,len = path.length;i<len;i++) {
 
@@ -41,7 +44,6 @@ var hero = function(){
         } else {
           //转向
           d = cy - oy > 0 ? 2 : 0;
-          console.log(d);
           turn(d);
           move(d, Math.abs(cy - oy));
           oy = cy;
@@ -55,7 +57,6 @@ var hero = function(){
         } else {
           //转向
           d = cx- ox > 0 ? 1 : 3;
-          console.log(d);
           turn(d);
           move(d, Math.abs(cx - ox));
           ox = cx;

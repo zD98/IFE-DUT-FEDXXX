@@ -13,14 +13,13 @@ var Map = (function(){
       search : search
     };
     function addHinder(x, y){
-      x = x/50;
-      y = y/50;
       getPoint(x,y).isHinder = true;
     }
     function getPoint(x , y){
       return pointsArray[x+y*width];
     }
     function search(sX,sY,eX,eY,way){
+      
       refresh();
       //TODO  eX,eY出界判断,目前只提供A*算法
       var start = getPoint(sX,sY),end = getPoint(eX,eY);
@@ -29,7 +28,12 @@ var Map = (function(){
     }
     function refresh(){
       for(var i=0,len = width*height;i<len;i++){
-        pointsArray[i].isClosed = false;
+        var  p = pointsArray[i];
+        p.isClosed = false;
+        p.G = 0;
+        p.H = 0;
+        p.F = 0;
+        p.prePoint = null;
       }
     }
     function initMap(w,h){

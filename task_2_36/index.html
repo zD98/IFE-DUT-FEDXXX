@@ -3,11 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="js/point.js"></script>
-    <script src="js/a.search.js"></script>
-    <script src="js/analysis.js"></script>
-    <script src="js/hero.js"></script>
-    <script src="js/map.js"></script>
     <style>
         *{
             margin: 0;;
@@ -60,6 +55,10 @@
         .map .grid-map .grid{
             float: left;
             outline: 1px solid #999;
+        }
+
+        .map .grid-map .wall{
+            background: #999;
         }
         .map .hero{
             position: absolute;
@@ -215,6 +214,15 @@
     <textarea name="" id="textarea" cols="30" rows="10"></textarea>
     <button type="button">获取内容</button>
 </div>
+<script src="js/point.js"></script>
+<script src="js/a.search.js"></script>
+<script src="js/analysis.js"></script>
+<!--map need search-->
+<script src="js/map.js"></script>
+<!--wall need map-->
+<script src="js/wall.js"></script>
+<!--hero need map, wall ,analysis-->
+<script src="js/hero.js"></script>
 <script>
     var btn = document.querySelector('button');
     var text = document.querySelector('textarea');
@@ -222,11 +230,12 @@
     hero.init(grid);
     btn.addEventListener('click',function(){
         var cmds = analysis.analyze(text.value);
-        console.log(cmds);
         hero.receiveActions(cmds);
     });
     Map.getInstance().initMap(10,10);
-    console.log('0'.match(/^[0-9]*$/));
+    Wall.addWall(1,0);
+    Wall.addWall(2,1);
+    Wall.addWall(0,2);
 </script>
 </body>
 </html>

@@ -28,10 +28,13 @@ var astart = function(){
         var point = aroundPoints[i];
         if(openList.indexOf(point)!=-1&&isCorner){
           //计算G
-          if((tempStart.G+point.G) >= (tempStart.prePoint.G+tempStart.G)){
-            tempStart.isClosed = true;
-            openList.splice(openList.indexOf(tempStart),1);
-            tempStart = point;
+          if(openList.indexOf(point)!=-1&&isCorner) {
+            //计算G
+            if ((tempStart.G + point.G) >= (tempStart.prePoint.G + tempStart.G)) {
+              tempStart.isClosed = true;
+              openList.splice(openList.indexOf(tempStart), 1);
+              tempStart = point;
+            }
           }
         }else{
           //计算GHF
@@ -44,9 +47,16 @@ var astart = function(){
       }
       openList.splice(openList.indexOf(tempStart),1);
       tempStart.isClosed = true;
-      closeList.push(tempStart);
+
       if(end.isClosed == true){
-        return closeList;
+        var array = [], p = end;
+
+        while(p!=null){
+          array.push(p);
+          p = p.prePoint;
+        }
+        console.log(array);
+        return array.reverse();
       }
     }
     return [];
