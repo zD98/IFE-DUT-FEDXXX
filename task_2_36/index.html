@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <!--<script src="js/a.search.js"></script>-->
+    <script src="js/point.js"></script>
+    <script src="js/a.search.js"></script>
     <script src="js/analysis.js"></script>
     <script src="js/hero.js"></script>
+    <script src="js/map.js"></script>
     <style>
         *{
             margin: 0;;
@@ -222,7 +224,10 @@
         console.log(cmds);
         hero.receiveActions(cmds);
     });
-
+    Map.getInstance().initMap(10,10);
+    var path = Map.getInstance().search(0,0,2,2);
+    console.log(path);
+    hero.runInPath(path);
 </script>
 </body>
 </html>

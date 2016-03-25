@@ -15,18 +15,74 @@ var hero = function(){
     tra:tra,
     mov:mov
   };
-
-
+  
   return {
     init:init,
-    receiveActions:receive
+    receiveActions:receive,
+    runInPath:runInPath
   };
+  function runInPath(path){
+    var ox,oy,cx,cy,
+      horizon = false,vertical = false;
+    ox= cx = 0; oy= cy = 0;
+    for(var i = 1,len = path.length;i<len;i++) {
+
+      var p = path[i];
+      var d;
+      if (p.x == cx) {
+        if (vertical == false) {
+          horizon = true;
+        } else {
+          //转向
+          d = cx - ox > 0 ? 2 : 0;
+          turn(d);
+          move(d, (cx - ox));
+          ox = cx;
+          vertical = false;
+          horizon = true;
+        }
+      }
+      if (p.y == cy) {
+        if (horizon == false) {
+          vertical = true;
+        } else {
+          //转向
+          d = cy- oy > 0 ? 1 : 3;
+          turn(d);
+          move(d, (cy - oy));
+          oy = cy;
+
+          horizon = false;
+          vertical = true;
+        }
+
+      }
+      cx = p.x;
+      cy = p.y;
+    }
+    if(horizon){
+      d = cy- oy > 0 ? 1 : 3;
+      turn(d);
+      move(d, (cy - oy));
+    }
+    if(vertical){
+      d = cx - ox > 0 ? 2 : 0;
+      turn(d);
+      move(d, (cx - ox));
+    }
+
+    console.log(actions);
+    if(actions.length!=0) {
+      element.style.transform = actions.shift();
+    }
+  }
   function init(ele){
     element = ele;
     element.addEventListener('transitionend',function(){
      var action;
       if(actions.length!=0){
        action = actions.shift();
+        console.log(element.offsetLeft);
        element.style.transform = action;
      }
     })
@@ -36,6 +92,7 @@ var hero = function(){
       state[cmds[i][0]].apply(null,cmds[i].slice(1));
     }
     console.log(actions);
+
     if(actions.length!=0) {
       element.style.transform = actions.shift();
     }
@@ -144,8 +201,8 @@ var hero = function(){
       default:
 
     }
-    console.log(direct);
     var css = 'matrix('+matrix.join(',')+')';
     actions.push(css);
   }
+
 }();
