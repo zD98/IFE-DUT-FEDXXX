@@ -18,7 +18,7 @@ var Map = (function(){
       getPoint(x,y).isHinder = true;
     }
     function getPoint(x , y){
-      return pointsArray[x*width+y];
+      return pointsArray[x+y*width];
     }
     function search(sX,sY,eX,eY,way){
       refresh();
@@ -37,7 +37,7 @@ var Map = (function(){
       height = h;
       var point ;
       for(var i =0,len = w*h;i<len;i++){
-        point = new Point(Math.floor(i/width),i%width);
+        point = new Point(i%width,Math.floor(i/width));
         pointsArray.push(point);
       }
     }

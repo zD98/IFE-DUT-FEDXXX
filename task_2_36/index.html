@@ -66,7 +66,8 @@
             width: 50px;
             height: 50px;
             background: #f00;
-            transition: transform 2s;
+            transition: transform 1s;
+            transform: matrix(1,0,0,1,0,0);
         }
         .map .hero .head{
             width: 50px;
@@ -225,9 +226,7 @@
         hero.receiveActions(cmds);
     });
     Map.getInstance().initMap(10,10);
-    var path = Map.getInstance().search(0,0,2,2);
-    console.log(path);
-    hero.runInPath(path);
+    console.log('0'.match(/^[0-9]*$/));
 </script>
 </body>
 </html>

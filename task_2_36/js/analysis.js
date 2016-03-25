@@ -40,8 +40,8 @@ var analysis = function(){
     var step = null;
     if(str!=undefined){
       str = str.trim();
-      if(str.match(/^[0-9]*$/)) {
-        step = parseInt(str)
+      if(str.match(/^[0-9]*$/)!=null) {
+        step = parseInt(str);
       }
     }else{
       step =1;
@@ -71,6 +71,18 @@ var analysis = function(){
   function mov(dir,steps){
     if(arguments.length>2){
       return false;
+    }
+    if(dir.match('TO')){
+      var p = steps;
+      if(p!=undefined){
+        var coord= p.split(',');
+
+        if(isNum(coord[0])!=null&&isNum(coord[1])!=null){
+          return ['moveTo',parseInt(coord[0]),parseInt(coord[1])];
+        }else{
+          return false;
+        }
+      }
     }
     if(dir==undefined||!dir.match(/^LEF$|^RIG$|^TOP$|^BOT$/)){
       return false;

@@ -121,7 +121,7 @@ var astart = function(){
     return result;
     
     function getPoint(x,y){
-      return pointsArray[x*width+y];
+      return pointsArray[y*width+x];
     }
   }
   function findMinF(list){

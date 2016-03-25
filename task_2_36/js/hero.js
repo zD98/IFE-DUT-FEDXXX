@@ -13,44 +13,52 @@ var hero = function(){
     go:go,
     tun:tun,
     tra:tra,
-    mov:mov
+    mov:mov,
+    moveTo:moveTo
   };
   
   return {
     init:init,
-    receiveActions:receive,
-    runInPath:runInPath
+    receiveActions:receive
   };
+  
+  function moveTo(x,y){
+    x--;y--;
+    var path = Map.getInstance().search(Math.floor(matrix[4]/50),Math.floor(matrix[5]/50),x,y);
+    runInPath(path);
+  }
   function runInPath(path){
     var ox,oy,cx,cy,
       horizon = false,vertical = false;
-    ox= cx = 0; oy= cy = 0;
+    ox= cx = path[0].x; oy= cy = path[0].y;
     for(var i = 1,len = path.length;i<len;i++) {
 
       var p = path[i];
       var d;
-      if (p.x == cx) {
+      if (p.y == cy) {
         if (vertical == false) {
           horizon = true;
         } else {
           //转向
-          d = cx - ox > 0 ? 2 : 0;
+          d = cy - oy > 0 ? 2 : 0;
+          console.log(d);
           turn(d);
-          move(d, (cx - ox));
-          ox = cx;
+          move(d, Math.abs(cy - oy));
+          oy = cy;
           vertical = false;
           horizon = true;
         }
       }
-      if (p.y == cy) {
+      if (p.x == cx) {
         if (horizon == false) {
           vertical = true;
         } else {
           //转向
-          d = cy- oy > 0 ? 1 : 3;
+          d = cx- ox > 0 ? 1 : 3;
+          console.log(d);
           turn(d);
-          move(d, (cy - oy));
-          oy = cy;
+          move(d, Math.abs(cx - ox));
+          ox = cx;
 
           horizon = false;
           vertical = true;
@@ -61,19 +69,18 @@ var hero = function(){
       cy = p.y;
     }
     if(horizon){
-      d = cy- oy > 0 ? 1 : 3;
+      d = cx- ox > 0 ? 1 : 3;
       turn(d);
-      move(d, (cy - oy));
+      move(d, Math.abs(cx - ox));
     }
     if(vertical){
-      d = cx - ox > 0 ? 2 : 0;
+      d = cy - oy > 0 ? 2 : 0;
       turn(d);
-      move(d, (cx - ox));
+      move(d, Math.abs(cy - oy));
     }
-
-    console.log(actions);
     if(actions.length!=0) {
       element.style.transform = actions.shift();
+      element.getComputedStyle();
     }
   }
   function init(ele){
@@ -82,7 +89,6 @@ var hero = function(){
      var action;
       if(actions.length!=0){
        action = actions.shift();
-        console.log(element.offsetLeft);
        element.style.transform = action;
      }
     })
@@ -91,7 +97,6 @@ var hero = function(){
     for(var i=0,len = cmds.length;i<len;i++){
       state[cmds[i][0]].apply(null,cmds[i].slice(1));
     }
-    console.log(actions);
 
     if(actions.length!=0) {
       element.style.transform = actions.shift();
@@ -103,7 +108,7 @@ var hero = function(){
   function tun(dir){
     switch (dir) {
       case "LEF":
-        direct = --direct>0?direct:direct+=4;
+        direct = --direct>-1?direct:direct+=4;
         break;
       case "RIG":
         direct = ++direct<4?direct:direct-=4;
