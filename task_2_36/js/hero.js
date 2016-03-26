@@ -8,21 +8,124 @@ var hero = function(){
   var direct = 0;
   var actions = [];
   var element = null;
-  var matrix = [1,0,0,1,0,0];
+  var matrix = [1,0,0,1,200,200];
+  var active = false;
   var state = {
     go:go,
     tun:tun,
     tra:tra,
     mov:mov,
-    moveTo:moveTo
+    moveTo:moveTo,
+    bru:brush,
+    build:build
   };
   
   return {
+    getPosition:getPosition,
     init:init,
-    receiveActions:receive
+    receiveActions:receive,
+    refresh:refresh
   };
-  
+  function getPosition(){
+    return [matrix[4],matrix[5]];
+  }
+  function refresh(){
+    matrix= [1,0,0,1,200,200];
+    direct = 0;
+    actions= [];
+    active = false;
+    element.style.transform = 'matrix('+matrix.join(',')+')';
+  }
+  function init(ele){
+    element = ele;
+    element.addEventListener('transitionend',function(){
+     var action;
+      if(actions.length!=0){
+        action = actions.shift();
+
+        while(Object.prototype.toString.call(action) ==='[object Function]'){
+          action();
+          action = actions.shift();
+        }
+
+        if(action!=undefined) {
+          element.style.transform = action;
+          active = false;
+        }
+     }else{
+        active = false;
+      }
+    })
+  }
+  function receive(cmds){
+    // TODO 移动的提交
+    for(var i=0,len = cmds.length;i<len;i++){
+      state[cmds[i][0]].apply(null,cmds[i].slice(1));
+    }
+    if(actions.length!=0&&active ==false) {
+      var action = actions.shift();
+      while(Object.prototype.toString.call(action) ==='[object Function]'){
+        action();
+        action = actions.shift();
+      }
+      element.style.transform = action;
+      active = true;
+    }
+  }
+  function go(steps){
+    move(direct,steps);
+  }
+  function tun(dir){
+    console.log(dir);
+    switch (dir) {
+      case "LEF":
+        direct = --direct>-1?direct:direct+=4;
+        break;
+      case "RIG":
+        direct = ++direct<4?direct:direct-=4;
+        break;
+      case "BAC":
+        direct = (direct+=2)<4?direct:direct-=4;
+        break;
+    }
+    turn(direct)
+  }
+  function tra(dir,steps){
+    switch (dir){
+      case "LEF":
+        dir = 3;
+        break;
+      case "RIG":
+        dir = 1;
+        break;
+      case "TOP":
+        dir = 0;
+        break;
+      case "BOT":
+        dir = 2;
+        break;
+    }
+    move(dir,steps)
+  }
+  function mov(dir,steps){
+    switch (dir){
+      case "LEF":
+        direct = 3;
+        break;
+      case "RIG":
+        direct = 1;
+        break;
+      case "TOP":
+        direct = 0;
+        break;
+      case "BOT":
+        direct = 2;
+    }
+    turn(direct);
+    go(steps);
+  }
   function moveTo(x,y){
+    console.log('search');
     x--;y--;
     var path = Map.getInstance().search(Math.floor(matrix[4]/50),Math.floor(matrix[5]/50),x,y);
     runInPath(path);
@@ -79,106 +182,50 @@ var hero = function(){
       turn(d);
       move(d, Math.abs(cy - oy));
     }
-    if(actions.length!=0) {
-      element.style.transform = actions.shift();
-      element.getComputedStyle();
-    }
-  }
-  function init(ele){
-    element = ele;
-    element.addEventListener('transitionend',function(){
-     var action;
-      if(actions.length!=0){
-       action = actions.shift();
-       element.style.transform = action;
-     }
-    })
-  }
-  function receive(cmds){
-    for(var i=0,len = cmds.length;i<len;i++){
-      state[cmds[i][0]].apply(null,cmds[i].slice(1));
-    }
-
-    if(actions.length!=0) {
-      element.style.transform = actions.shift();
-    }
-  }
-  function go(steps){
-    move(direct,steps);
-  }
-  function tun(dir){
-    switch (dir) {
-      case "LEF":
-        direct = --direct>-1?direct:direct+=4;
-        break;
-      case "RIG":
-        direct = ++direct<4?direct:direct-=4;
-        break;
-      case "BAC":
-        direct = (direct+=2)<4?direct:direct-=4;
-        break;
-    }
-    turn(direct)
-  }
-  function tra(dir,steps){
-    switch (dir){
-      case "LEF":
-        dir = 3;
-        break;
-      case "RIG":
-        dir = 1;
-        break;
-      case "TOP":
-        dir = 0;
-        break;
-      case "BOT":
-        dir = 2;
-        break;
-    }
-    move(dir,steps)
-  }
-  function mov(dir,steps){
-    switch (dir){
-      case "LEF":
-        direct = 3;
-        break;
-      case "RIG":
-        direct = 1;
-        break;
-      case "TOP":
-        direct = 0;
-        break;
-      case "BOT":
-        direct = 2;
-    }
-    turn(direct);
-    go(steps);
   }
   function move(direction, steps){
     var len  = steps*50;
+    var tag = false;
     switch (direction){
       case 0:
         matrix[5]-=len;
-        matrix[5]<0?matrix[5]=0:matrix[5];
+
+        if( matrix[5]<0){
+          tag = true;
+          matrix[5]=0
+        }
         break;
       case 1:
         matrix[4]+=len;
-        matrix[4]>450?matrix[4]=450:matrix[4];
+
+        if(matrix[4]>450){
+          matrix[4]=450;
+          tag = true;
+        }
         break;
       case 2:
         matrix[5]+=len;
-        matrix[5]>450?matrix[5]=450:matrix[5];
+        if(matrix[5]>450){
+          matrix[5]=450;
+          tag = true;
+        }
         break;
       case 3:
         matrix[4]-=len;
-        matrix[4]<0?matrix[4]=0:matrix[4];
+        if( matrix[4]<0){
+          tag = true;
+          matrix[4]=0
+        }
         break
     }
-    
+    if(tag == true){
+      return ;
+    }
     var css = 'matrix('+matrix.join(',')+')';
     actions.push(css);
   }
   function turn(direction){
+    direct = direction;
     switch (direction){
       case 0:
         matrix[0]= 1;
@@ -210,5 +257,55 @@ var hero = function(){
     var css = 'matrix('+matrix.join(',')+')';
     actions.push(css);
   }
+  function brush(color){
+    var x = matrix[4]/50;
+    var y = matrix[5]/50;
+    switch (direct){
+      case 0:
+        y--;
+        break;
+      case 1:
+        x++;
+        break;
+      case 2:
+        y++;
+        break;
+      case 3:
+        x--;
+        break;
+    }
+    if(x>=0&&y>=0&&x<=9&&y<=9){
+      var b = function(){
+        console.log(x,y,color);
+        Wall.brushWall(x,y,color);
+      };
+      actions.push(b);
+    }
+  }
+  function build(){
+    var x = matrix[4]/50;
+    var y = matrix[5]/50;
+    switch (direct){
+      case 0:
+        y--;
+        break;
+      case 1:
+        x++;
+        break;
+      case 2:
+        y++;
+        break;
+      case 3:
+        x--;
+        break;
+    }
+    if(x>=0&&y>=0&&x<=9&&y<=9){
+      Wall.setHinder(x,y);
+      var b = function(){
+        Wall.addWall(x,y);
+      };
+      actions.push(b);
+    }
 
+  }
 }();
