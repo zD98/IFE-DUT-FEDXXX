@@ -1,14 +1,9 @@
 ##IFE-DUT-团队
 ###branch-王振东
+###branch-范廷雷
+###branch-陈天韵
+task1_7  王振东
+task1_8  王振东
+task1_9  合作
+task2_36 王振东
 
-Task1-7独立完成
-
-Task1-8独立完成
-
-Task1-9完成第三部分(四个表格)
-
-Task2-36
-
-developing -
-
-finish A-star
