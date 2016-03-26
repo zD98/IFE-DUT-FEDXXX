@@ -125,7 +125,6 @@ var hero = function(){
     go(steps);
   }
   function moveTo(x,y){
-    console.log('search');
     x--;y--;
     var path = Map.getInstance().search(Math.floor(matrix[4]/50),Math.floor(matrix[5]/50),x,y);
     runInPath(path);
@@ -226,6 +225,7 @@ var hero = function(){
   }
   function turn(direction){
     direct = direction;
+    var tag = false;
     switch (direction){
       case 0:
         matrix[0]= 1;
@@ -234,28 +234,32 @@ var hero = function(){
         matrix[3]= 1;
         break;
       case 1:
+
         matrix[0]= 0;
         matrix[1]= 1;
         matrix[2]= -1;
         matrix[3]= 0;
         break;
       case 2:
+
         matrix[0]= -1;
         matrix[1]= 0;
         matrix[2]= 0;
         matrix[3]= -1;
         break;
       case 3:
-        matrix[0]= 0;
-        matrix[1]= -1;
+        matrix[0]= -0;
+        matrix[1]=-1;
         matrix[2]= 1;
-        matrix[3]= 0;
+        matrix[3]= -0;
         break;
       default:
 
     }
-    var css = 'matrix('+matrix.join(',')+')';
+    
+    var css = 'matrix(' + matrix.join(',') + ')';
     actions.push(css);
+
   }
   function brush(color){
     var x = matrix[4]/50;

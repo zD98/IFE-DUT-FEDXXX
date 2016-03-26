@@ -36,6 +36,7 @@ var Wall = function(){
       var nx  = Math.floor(Math.random()*10);
       var ny = Math.floor(Math.random()*10);
       if(x!==nx&&y!==ny) {
+        setHinder(nx,ny);
         addWall(nx,ny);
       }
     }
