@@ -27,7 +27,7 @@ var hero = function(){
     refresh:refresh
   };
   function getPosition(){
-    return [matrix[4],matrix[5]];
+    return [matrix[4]/50,matrix[5]/50];
   }
   function refresh(){
     matrix= [1,0,0,1,200,200];
@@ -76,7 +76,6 @@ var hero = function(){
     move(direct,steps);
   }
   function tun(dir){
-    console.log(dir);
     switch (dir) {
       case "LEF":
         direct = --direct>-1?direct:direct+=4;

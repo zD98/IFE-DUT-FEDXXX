@@ -30,8 +30,6 @@ var Wall = function(){
   }
   function randomWall(x,y){
     var i = Math.floor(Math.random()*5+1);
-    console.log(i);
-
     for(var j =0;j<i;j++){
       var nx  = Math.floor(Math.random()*10);
       var ny = Math.floor(Math.random()*10);
