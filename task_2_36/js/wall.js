@@ -8,13 +8,25 @@ var Wall = function(){
   return {
     addWall:addWall,
     randomWall:randomWall,
-    brushWall:brushWall
+    brushWall:brushWall,
+    refresh:refresh,
+    setHinder:setHinder
   };
-
-  function addWall(x,y){
-    
-    grids[y*10+x].classList.add('wall');
+  function setHinder(x,y){
     Map.getInstance().addHinder(x,y);
+  }
+  function refresh(){
+    var len = 99;
+    while(len--){
+      if(grids[len].classList.contains('wall')) {
+        grids[len].classList.remove('wall');
+      }
+      grids[len].backgroundColor = "#999";
+    }
+    Map.getInstance().refresh(true);
+  }
+  function addWall(x,y){
+    grids[y*10+x].classList.add('wall');
   }
   function randomWall(x,y){
     var i = Math.floor(Math.random()*5+1);

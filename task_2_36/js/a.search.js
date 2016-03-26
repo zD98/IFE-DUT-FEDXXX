@@ -55,7 +55,6 @@ var astart = function(){
           array.push(p);
           p = p.prePoint;
         }
-        console.log(array);
         return array.reverse();
       }
     }
@@ -69,28 +68,28 @@ var astart = function(){
     if(l>-1){
       point = getPoint(l,y);
       point.G = 1;
-      if(!point.isClosed&&!point.isHinder){
+      if((!point.isHinder)&&(!point.isClosed)){
         result.push(point);
       }
     }
     if(r<width){
       point = getPoint(r,y);
       point.G = 1;
-      if(!point.isClosed&&!point.isHinder){
+      if((!point.isHinder&&!point.isClosed)){
         result.push(point);
       }
     }
     if(u>-1){
       point = getPoint(x,u);
       point.G = 1;
-      if(!point.isClosed&&!point.isHinder){
+      if((!point.isHinder)&&(!point.isClosed)){
         result.push(point);
       }
     }
     if(d<height){
       point = getPoint(x,d);
       point.G = 1;
-      if(!point.isClosed&&!point.isHinder){
+      if((!point.isHinder)&&(!point.isClosed)){
         result.push(point);
       }
     }

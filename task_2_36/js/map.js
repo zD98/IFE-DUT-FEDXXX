@@ -10,7 +10,8 @@ var Map = (function(){
     return {
       initMap:initMap,
       addHinder:addHinder,
-      search : search
+      search : search,
+      refresh:refresh
     };
     function addHinder(x, y){
       getPoint(x,y).isHinder = true;
@@ -19,14 +20,13 @@ var Map = (function(){
       return pointsArray[x+y*width];
     }
     function search(sX,sY,eX,eY,way){
-      
-      refresh();
+      refresh(false);
       //TODO  eX,eY出界判断,目前只提供A*算法
       var start = getPoint(sX,sY),end = getPoint(eX,eY);
       astart.setMap(pointsArray,width,height);
       return astart.findPath(start, end ,false);
     }
-    function refresh(){
+    function refresh(clearHinder){
       for(var i=0,len = width*height;i<len;i++){
         var  p = pointsArray[i];
         p.isClosed = false;
@@ -34,6 +34,9 @@ var Map = (function(){
         p.H = 0;
         p.F = 0;
         p.prePoint = null;
+        if(clearHinder){
+          p.isHinder = false;
+        }
       }
     }
     function initMap(w,h){
