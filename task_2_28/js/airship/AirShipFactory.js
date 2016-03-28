@@ -14,9 +14,8 @@ var  AirShipFactory = function(){
   
   function create(dynamicSystem, energySystem){
     var airship  = new Airship();
-    airship.$dynamicSystem = types[dynamicSystem];
-    airship.$energySystem = types[energySystem];
-    
+    airship.$dynamicSystem = new types[dynamicSystem](airship);
+    airship.$energySystem = new types[energySystem](airship);
     return airship;
   }
 }();

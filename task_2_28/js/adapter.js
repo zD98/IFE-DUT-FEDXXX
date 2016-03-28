@@ -10,8 +10,7 @@ var Adapter  = {
   convertBytetoObj:function(byte){
     var obj = {};
     obj.id = "";
-    obj.state = "";
-    obj.energy = "";
+    obj.command = "";
     return obj;
   }
 };
