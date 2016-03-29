@@ -18,7 +18,7 @@ Receiver.prototype = {
   },
   constructor: Receiver,
   receiveMsg: function(){
-    
+    console.log("undo msg");
   },
   destroy:
     function(){

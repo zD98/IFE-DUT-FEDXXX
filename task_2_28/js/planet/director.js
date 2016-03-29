@@ -27,12 +27,12 @@ function destroyShip(id){
   this.$planet.sendCmd(id,command);
 }
 
-function runShip(){
+function runShip(id){
   var command = "run";
   this.$planet.sendCmd(id,command);
 }
 
-function stopShip(){
+function stopShip(id){
   var command = "stop";
   this.$planet.sendCmd(id,command);
 }

@@ -7,13 +7,17 @@ function Planet(){
   this.$emitter = new Emitter('planet');
   this.$receiver = new Receiver('airship');
 
+  this.init();
 }
 
 Planet.prototype = {
   constructor:Planet,
   init:function(){
     this.$receiver.receiveMsg = function(msg){
-      
+      console.log("planet receiver");
+      console.log(msg);
+      var obj = Adapter.convertBytetoObj(msg);
+      console.log(obj);
     }.bind(this);
   },
   sendCmd:function(id, command){

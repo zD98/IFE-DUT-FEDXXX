@@ -2,7 +2,9 @@
  * Created by zd98 on 2016/3/28.
  */
 var Adapter  = {
+
   convertObjtoByte:function(obj){
+
     var id = obj.id.toString(2);
     var command = obj.command;
     switch (command){
@@ -28,7 +30,7 @@ var Adapter  = {
   convertBytetoObj:function(byte){
     var obj = {};
     obj.id = parseInt(byte.slice(0,3),2);
-    switch (byte.slice(4,7)){
+    switch (byte.slice(4,8)){
       case "0001":
         obj.command = "run";
         break;
@@ -39,7 +41,8 @@ var Adapter  = {
         obj.command = "destroy";
         break;
     }
-    obj.energy = parseInt(byte.slice(7,15),2);
+    obj.energy = parseInt(byte.slice(8),2);
     return obj;
   }
 };
+

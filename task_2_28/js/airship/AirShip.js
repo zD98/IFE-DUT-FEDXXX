@@ -7,14 +7,13 @@
  */
 function Airship (id){
   
-  this.$state = "";
+  this.$state = "stop";
   this.$uuid = id;
   this.$dynamicSystem = null;
   this.$energySystem = null;
   this.$emitter = new Emitter("airship");
   this.$receiver = new Receiver("planet");
   this.$internal = null;
-  console.log(this.$receiver);
   this.init();
 }
 Airship.prototype = {
@@ -23,24 +22,30 @@ Airship.prototype = {
     console.log("create Airship");
     this.$receiver.receiveMsg = function(msg){
       var obj = Adapter.convertBytetoObj(msg);
+      console.log(obj);
       if(obj.id == this.$uuid){
         this.execute(obj.command);
       }
     }.bind(this);
 
     this.$internal = function(){
-        var msg = {};
+        var msg = {
+          id:this.$uuid,
+          command:this.$state,
+          energy:this.$energySystem.getEnergy()
+        };
         msg = Adapter.convertObjtoByte(msg);
         this.$emitter.sendMsg(msg)
     }.bind(this);
     
-    setInterval(this.$internal,1000);
+    //setInterval(this.$internal,1000);
   },
   //绘图用render
   render:function(){
 
   },
   execute:function(command){
+    console.log("airship "+command);
     switch (command){
       case "run":
         this.run();

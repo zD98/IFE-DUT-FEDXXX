@@ -3,21 +3,19 @@
  */
 var BUS = function(){
 
-  return {
-<<<<<<< Updated upstream
-     publish:publish
+  var plRate = 0.1;
+  var subscribers = {
+    airship:[],
+    planet:[]
   };
-  function publish(){
 
-  }
-=======
+  return {
     publish: function(type, msg) {
 
       var subs = subscribers[type];
       for (let i = 0, len = subs.length; i < len; i++) {
-        //send(subs[i],msg);
+        send(subs[i],msg);
       }
-
       function send(sub,msg){
         let promise =  new Promise(function(resolve,reject){
           setTimeout(function(){
@@ -53,5 +51,4 @@ var BUS = function(){
     }
   };
 
->>>>>>> Stashed changes
 }();

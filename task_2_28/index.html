@@ -6,7 +6,6 @@
 
 </head>
 <body>
-
 <script src="js/BUS.js"></script>
 <script src="js/Emitter.js"></script>
 <script src="js/Receiver.js"></script>
@@ -21,11 +20,8 @@
 <script>
     var planet = new Planet();
     var director = new Director(planet);
-    director.createShip("AheadDSystem","EnergizerESystem");
-    director.createShip("AheadDSystem","EnergizerESystem");
-    director.createShip("AheadDSystem","EnergizerESystem");
-    director.createShip("AheadDSystem","EnergizerESystem");
-
+    director.createShip('AheadDSystem','LightESystem');
+    director.runShip(0);
 </script>
 </body>
 </html>

@@ -38,6 +38,7 @@ var  AirShipFactory = function(){
     if(id == null){
       throw "Ships is full";
     }
+    id = id.replace('id','');
     var airship  = new Airship(id);
     idState[id] = airship;
     airship.$dynamicSystem = new types[dynamicSystem](airship);
