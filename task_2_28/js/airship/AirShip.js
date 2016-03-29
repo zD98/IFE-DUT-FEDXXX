@@ -1,56 +1,78 @@
 /**
  * Created by zd98 on 2016/3/28.
  */
-
-
-
-function Airship (){
+/**
+ * 
+ * @constructor
+ */
+function Airship (id){
+  
   this.$state = "";
-  this.uuid = "";
+  this.$uuid = id;
   this.$dynamicSystem = null;
   this.$energySystem = null;
   this.$emitter = new Emitter("airship");
-  this.$reviever = new Receiver("planet");
+  this.$receiver = new Receiver("planet");
+  this.$internal = null;
+  console.log(this.$receiver);
+  this.init();
 }
 Airship.prototype = {
   constructor:Airship,
-  init:init,
+  init:function(){
+    console.log("create Airship");
+    this.$receiver.receiveMsg = function(msg){
+      var obj = Adapter.convertBytetoObj(msg);
+      if(obj.id == this.$uuid){
+        this.execute(obj.command);
+      }
+    }.bind(this);
+
+    this.$internal = function(){
+        var msg = {};
+        msg = Adapter.convertObjtoByte(msg);
+        this.$emitter.sendMsg(msg)
+    }.bind(this);
+    
+    setInterval(this.$internal,1000);
+  },
   //绘图用render
-  render:render,
-  execute:execute,
-  //飞行
-  run:run,
-  //销毁
-  destroy:destroy
-};
-function init(){
-  this.$reviever.receiveMsg = function(msg){
-    var obj = Adapter.convertBytetoObj(msg);
-    if(obj.id == this.uuid){
-          this.execute(obj.command);
+  render:function(){
+
+  },
+  execute:function(command){
+    switch (command){
+      case "run":
+        this.run();
+        break;
+      case "stop":
+        this.stop();
+        break;
+      case "destroy":
+        this.destroy();
+        break;
     }
-  }.bind(this);
+  },
+  //飞行
+  run:function(){
+    this.$energySystem.charge();
+    if(this.state == "fly"){
+      this.$dynamicSystem.consumpt();
+    }
+  },
+  stop:function(){
 
-  setTimeout(function(){
-    var msg = {};
-    msg = Adapter.convertObjtoByte(msg);
-    this.$emitter.sendMsg(msg)
-  }.bind(this),1000)
-
-}
-
-function execute(command){
-  
-}
-function run(){
-  this.$energySystem.charge();
-  if(this.state == "fly"){
-    this.$dynamicSystem.consumpt();
+  },
+  //销毁
+  destroy:function(){
+    this.$energySystem.destroy();
+    this.$dynamicSystem.destroy();
+    this.$emitter.destroy();
+    this.$receiver.destroy();
+    AirShipFactory.destroyById(this.$uuid);
+    //视图上的销毁
   }
-}
-function destroy(){
-  
-}
-function render(gl){
+};
 
-}
+
+

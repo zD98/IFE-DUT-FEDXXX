@@ -1,68 +1,57 @@
 /**
  * Created by zd98 on 2016/3/28.
  */
-var BUS;
-BUS = function () {
-  //丢包率
-  var plRate = 0.1;
-  var subscribers = {
-    airship: [],
-    planet: []
-  };
+var BUS = function(){
 
   return {
-    publish: publish,
-    register: register
+<<<<<<< Updated upstream
+     publish:publish
   };
-  /**
-   *
-   * @param sub
-   * @param msg
-   */
-  function send(sub,msg){
-    let promise =  new Promise(function(resolve,reject){
-      setTimeout(function(){
-        if(Math.random()<plRate){
-          reject("lose");
-        }else{
-          sub.receiver.receiveMsg(msg);
-          resolve("success");
-        }
-      },300);
-    });
+  function publish(){
 
-    promise
-      .then()
-      .reject(function(err){
-        if(err == "lose"){
-          send(sub,msg);
-        }
-      })
   }
+=======
+    publish: function(type, msg) {
 
-  /**
-   *
-   * @param type 希望接受消息的type
-   * @param msg  二进制消息
-   */
-  function publish(type, msg) {
-    var subs = subscribers[type];
-    for (let i = 0, len = subs.length; i < len; i++) {
-      send(subs[i],msg);
+      var subs = subscribers[type];
+      for (let i = 0, len = subs.length; i < len; i++) {
+        //send(subs[i],msg);
+      }
+
+      function send(sub,msg){
+        let promise =  new Promise(function(resolve,reject){
+          setTimeout(function(){
+            if(Math.random()<plRate){
+              console.log("BUS receiver lose");
+              reject("lose");
+            }else{
+              sub.receiver.receiveMsg(msg);
+              console.log("BUS receiver success");
+              resolve("success");
+            }
+          },300);
+        });
+
+        promise
+          .then()
+          .catch(function(err){
+            if(err == "lose"){
+              send(sub,msg);
+            }
+          })
+      }
+    },
+    register: function(type, uuid, r) {
+      var sub = {
+        id: uuid,
+        receiver: r
+      };
+      subscribers[type].push(sub);
+    },
+    removeRegister:function(){
+
     }
-  }
+  };
 
-  /**
-   *
-   * @param type 希望接受消息的类型
-   * @param uuid 接受者的id
-   * @param r    接受者
-   */
-  function register(type, uuid, r) {
-    var sub = {
-      id: uuid,
-      receiver: r
-    };
-    subscribers[type].push(sub);
-  }
+>>>>>>> Stashed changes
 }();

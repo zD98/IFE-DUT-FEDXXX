@@ -3,9 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
 </head>
 <body>
+
+<script src="js/BUS.js"></script>
+<script src="js/Emitter.js"></script>
+<script src="js/Receiver.js"></script>
+<script src="js/adapter.js"></script>
+<script src="js/airship/AirShip.js"></script>
+<script src="js/airship/AirShipFactory.js"></script>
+<script src="js/airship/DynamicSystem.js"></script>
+<script src="js/airship/EnergySystem.js"></script>
+<script src="js/planet/DataCenter.js"> </script>
+<script src="js/planet/Planet.js"></script>
+<script src="js/planet/director.js"></script>
 <script>
+    var planet = new Planet();
+    var director = new Director(planet);
+    director.createShip("AheadDSystem","EnergizerESystem");
+    director.createShip("AheadDSystem","EnergizerESystem");
+    director.createShip("AheadDSystem","EnergizerESystem");
+    director.createShip("AheadDSystem","EnergizerESystem");
 
 </script>
 </body>
