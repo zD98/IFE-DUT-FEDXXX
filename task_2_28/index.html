@@ -6,6 +6,37 @@
 
 </head>
 <body>
+<div>
+    <div>
+        <canvas id="canvas"></canvas>
+    </div>
+</div>
+<script id="vertexShader" type="x-shader/x-vertex">
+  attribute vec3 vPosition;
+  attribute vec4 vColor;
+  attribute vec3 vNormal;
+  uniform mat4 MVPMatrix;
+  uniform mat4 invMatrix;
+  uniform vec3 lightDirection;
+  varying vec4 Color;
+  void main(void) {
+    vec3 invLight = normalize(invMatrix*vec4(lightDirection,0.0)).xyz;
+    float diffuse = clamp(dot(vNormal,invLight),0.1,1.0);
+    Color = vColor*vec4(vec3(diffuse),1.0);
+    gl_Position = MVPMatrix*vec4(vPosition,1.0);
+  }
+</script>
+<script id="fragmentShader" type="x-shader/x-fragment">
+    precision mediump float;
+    varying vec4 Color;
+    void main(){
+          gl_FragColor = Color;
+    }
+</script>
+<script src="js/gl/Vector.js"></script>
+<script src="js/gl/Matrix.js"></script>
+<script src="js/gl/geometry.js"></script>
+<script src="js/gl/gl.js"></script>
 <script src="js/BUS.js"></script>
 <script src="js/Emitter.js"></script>
 <script src="js/Receiver.js"></script>
@@ -14,14 +45,15 @@
 <script src="js/airship/AirShipFactory.js"></script>
 <script src="js/airship/DynamicSystem.js"></script>
 <script src="js/airship/EnergySystem.js"></script>
+<script src="js/planet/Monitor.js"></script>
 <script src="js/planet/DataCenter.js"> </script>
 <script src="js/planet/Planet.js"></script>
 <script src="js/planet/director.js"></script>
 <script>
-    var planet = new Planet();
-    var director = new Director(planet);
-    director.createShip('AheadDSystem','LightESystem');
-    director.runShip(0);
+    var sphere = new Sphere(1,32);
+    gl.addObject(sphere);
+    gl.render();
+
 </script>
 </body>
 </html>

@@ -3,10 +3,10 @@
  */
 function Planet(){
   
-  this.$dc = new DataCenter();
+  this.$dc = new DataCenter(this);
   this.$emitter = new Emitter('planet');
   this.$receiver = new Receiver('airship');
-
+  this.$monitor = new Monitor(this);
   this.init();
 }
 
@@ -15,9 +15,7 @@ Planet.prototype = {
   init:function(){
     this.$receiver.receiveMsg = function(msg){
       console.log("planet receiver");
-      console.log(msg);
-      var obj = Adapter.convertBytetoObj(msg);
-      console.log(obj);
+      this.$dc.processMsg(msg);
     }.bind(this);
   },
   sendCmd:function(id, command){

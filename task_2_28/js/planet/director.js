@@ -19,7 +19,6 @@ function createShip(dynamicSystem, energySystem){
     alert("Ships are full!");
     console.log(e);
   }
-
 }
 
 function destroyShip(id){

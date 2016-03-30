@@ -57,6 +57,7 @@ Airship.prototype = {
         this.destroy();
         break;
     }
+    
   },
   //飞行
   run:function(){
