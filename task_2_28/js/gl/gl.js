@@ -41,16 +41,20 @@ var gl = (function(){
     var objects = [];
 
     var project = Matrix.perspective(Math.PI/2, 400,300,0.1,100);
-    var view = Matrix.lookAt([0,0,5],[0,0,0],[0,1,0]);
-    var m = [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1];
+    var view = Matrix.lookAt([0,10,-10],[0,0,0],[0,1,0]);
+    var temp = [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1];
     var pvMatrix = Matrix.multiply(project,view);
 
-    var lightDirection = [1,1,1];
+    var lightDirection = [0,2,0];
 
-
+    var count = 0;
 
     return {
       render:function(){
+        gl.clearColor(0.0, 0.0, 0.0, 1.0);
+        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+
+
         for(let i=0,len = objects.length;i<len;i++){
           //[0] is pos,[1] is nor,[2] is color, [3] is index
           var info = objects[i].renderInfo;
@@ -59,8 +63,10 @@ var gl = (function(){
           vbos[1] = createVBO(gl,info[1]);
           vbos[2] = createVBO(gl,info[2]);
           setAttribute(gl,vbos,attL,attS);
-
+          count++;
+          var  m = objects[i].matrix;
           let invMatrix = Matrix.inverse(m);
+
           gl.uniformMatrix4fv(invMatrixLocation,false,invMatrix);
           gl.uniform3fv(lightDirectionLocation,lightDirection);
 
@@ -73,6 +79,8 @@ var gl = (function(){
           gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,ibo);
           gl.drawElements(gl.TRIANGLES,info[3].length,gl.UNSIGNED_SHORT,0);
           gl.flush();
+
+          //requestAnimationFrame(arguments.callee);
         }
       },
       addObject:function(obj){
