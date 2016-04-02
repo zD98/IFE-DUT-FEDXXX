@@ -27,7 +27,7 @@ Planet.prototype = {
   }
   ,
   createShip:function(dynamicSystem, energySystem){
-    AirShipFactory.createAirShip(dynamicSystem, energySystem);
+    return AirShipFactory.createAirShip(dynamicSystem, energySystem);
   }
 
 

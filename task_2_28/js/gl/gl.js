@@ -8,8 +8,8 @@ var gl = (function(){
     var gl,program,attL = [],attS=[],MVPMatrixLocation,lightDirectionLocation,invMatrixLocation;
     function init(){
       let canvas = document.querySelector('#canvas');
-      canvas.width = 600;
-      canvas.height = 480;
+      canvas.width = 480;
+      canvas.height = 360;
       gl = canvas.getContext('webgl');
       gl.clearColor(0.0, 0.0, 0.0, 1.0);
       gl.enable(gl.DEPTH_TEST);

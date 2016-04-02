@@ -35,10 +35,10 @@ Airship.prototype = {
           energy:this.$energySystem.getEnergy()
         };
         msg = Adapter.convertObjtoByte(msg);
-        this.$emitter.sendMsg(msg)
+      this.$emitter.sendMsg(msg)
     }.bind(this);
     
-    //setInterval(this.$internal,1000);
+    setInterval(this.$internal,1000);
   },
   //绘图用render
   render:function(){

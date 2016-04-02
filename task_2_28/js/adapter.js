@@ -29,7 +29,7 @@ var Adapter  = {
   },
   convertBytetoObj:function(byte){
     var obj = {};
-    obj.id = parseInt(byte.slice(0,3),2);
+    obj.id = parseInt(byte.slice(0,4),2);
     switch (byte.slice(4,8)){
       case "0001":
         obj.command = "run";
