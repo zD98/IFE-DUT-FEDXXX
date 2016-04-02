@@ -46,8 +46,13 @@ var BUS = function(){
       };
       subscribers[type].push(sub);
     },
-    removeRegister:function(){
-
+    removeRegister:function(type,id){
+      var subs = subscribers[type];
+      for(let i=0,len=subs.length;i<len;i++){
+        if(subs[i].id = id){
+          console.log(subs.splice(i,1));
+        }
+      }
     }
   };
 

@@ -15,7 +15,7 @@ Director.prototype = {
 function createShip(dynamicSystem, energySystem){
   try{
     var id = this.$planet.createShip(dynamicSystem, energySystem);
-    shipCtrl.addShipCtrl(id);
+    shipCtrl.addShipCtrl(this,id);
   }catch (e){
     alert("Ships are full!");
     console.log(e);

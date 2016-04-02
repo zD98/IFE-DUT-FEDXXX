@@ -25,7 +25,7 @@ var MonitorCtrl = function(){
       let ele =  list[msg.id];
       ele.innerHTML = `<div class="col air">${msg.id}号</div><div class="col dynamic">${msg.dynamic}</div><div class="col energy">${msg.energy}</div><div class="col state">${msg.state}</div><div class="col left">${msg.left}%</div>`
     }
-    if(msg.state == ""){
+    if(msg.state == "destroy"){
       setTimeout(function () {
         removeShip(msg.id);
       },1000);

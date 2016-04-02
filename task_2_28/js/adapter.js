@@ -1,6 +1,7 @@
 /**
  * Created by zd98 on 2016/3/28.
  */
+//TODO 改成ship和 planet 两版
 var Adapter  = {
 
   convertObjtoByte:function(obj){

@@ -28,17 +28,24 @@ Airship.prototype = {
       }
     }.bind(this);
 
-    this.$internal = function(){
-        var msg = {
-          id:this.$uuid,
-          command:this.$state,
-          energy:this.$energySystem.getEnergy()
-        };
-        msg = Adapter.convertObjtoByte(msg);
+    this.$internal = setInterval(function(){
+      this.$energySystem.charge();
+      if(this.$energySystem.getEnergy()<this.$dynamicSystem.consumption){
+        this.$state = 'stop';
+        this.stop();
+      }
+      if(this.$state == 'run') {
+        this.$dynamicSystem.consumpt();
+      }
+
+      var msg = {
+        id:this.$uuid,
+        command:this.$state,
+        energy:this.$energySystem.getEnergy()
+      };
+      msg = Adapter.convertObjtoByte(msg);
       this.$emitter.sendMsg(msg)
-    }.bind(this);
-    
-    setInterval(this.$internal,1000);
+    }.bind(this),1000);
   },
   //绘图用render
   render:function(){
@@ -61,20 +68,31 @@ Airship.prototype = {
   },
   //飞行
   run:function(){
-    this.$energySystem.charge();
-    if(this.state == "fly"){
-      this.$dynamicSystem.consumpt();
+    if(this.$state == "stop"){
+      this.$state = 'run';
     }
   },
   stop:function(){
-
+    this.$state = "stop";
   },
   //销毁
   destroy:function(){
+    clearInterval(this.$internal);
+    this.$internal = null;
+    this.$state = "destroy";
+    var msg = {
+      id:this.$uuid,
+      command:this.$state,
+      energy:this.$energySystem.getEnergy()
+    };
+    msg = Adapter.convertObjtoByte(msg);
+    this.$emitter.sendMsg(msg);
+    
     this.$energySystem.destroy();
     this.$dynamicSystem.destroy();
     this.$emitter.destroy();
     this.$receiver.destroy();
+    
     AirShipFactory.destroyById(this.$uuid);
     //视图上的销毁
   }

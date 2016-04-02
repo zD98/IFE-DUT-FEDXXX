@@ -10,14 +10,20 @@ function EnergySystem(ship){
 }
 
 EnergySystem.prototype = {
-  constructor:EnergySystem,
+  constructor: EnergySystem,
   //每秒获取能源
-  charge:function(){
+  charge: function () {
     this.energy += this.gain;
-    this.ship.energy = this.energy;
-  },
+    if (this.energy >= 100) {
+      this.energy = 100;
+    }
+  }
+  ,
   getEnergy:function(){
     return this.energy;
+  },
+  consumptEnergy:function(consumpt){
+    this.energy -= consumpt;
   },
   destroy:destroy
 };

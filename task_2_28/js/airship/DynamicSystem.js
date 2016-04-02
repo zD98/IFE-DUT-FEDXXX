@@ -1,20 +1,22 @@
 /**
  * Created by zd98 on 2016/3/28.
  */
-function DynamicSystem(){
+function DynamicSystem(ship){
+  this.ship = ship||null;
   this.velocity = 20;
   this.consumption = 5;
 }
 
 DynamicSystem.prototype.consumpt = function(){
-
-
+  this.ship.$energySystem.consumptEnergy(this.consumption);
 };
 
 DynamicSystem.prototype.getVelocity = function(){
+  return this.velocity;
+};
+DynamicSystem.prototype.destroy = function(){
 
 };
-
 function AheadDSystem(ship){
   console.log("create AheadD");
   this.ship = ship||null;
