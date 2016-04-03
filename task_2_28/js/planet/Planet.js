@@ -23,6 +23,7 @@ Planet.prototype = {
     obj.id = id;
     obj.command = command;
     var msg = Adapter.planet.convertObjToByte(obj);
+    console.log(msg);
     this.$emitter.sendMsg(msg);
   }
   ,

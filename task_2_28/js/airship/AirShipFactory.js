@@ -3,12 +3,12 @@
  */
 var  AirShipFactory = function(){
   var types = {};
-  var ids = ["00","01","10","11"];
+  var ids = ["1","2","3","4"];
   var idState = {
-    "00":null,
-    "01":null,
-    "10":null,
-    "11":null
+    "1":null,
+    "2":null,
+    "3":null,
+    "4":null
   };
   return {
     registerSystem : register,
@@ -38,7 +38,7 @@ var  AirShipFactory = function(){
     if(id == null){
       throw "Ships are full"
     }
-    var airship  = new Airship(id,parseInt(id,2)+1);
+    var airship  = new Airship(id,parseInt(id));
     idState[id] = airship;
     airship.$dynamicSystem = new types[dynamicSystem](airship);
     airship.$energySystem = new types[energySystem](airship);

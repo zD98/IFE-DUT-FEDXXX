@@ -4,7 +4,7 @@
 var Adapter  = {
   ship:{
     convertObjToByte:function(obj){
-      var id = obj.id.toString(2);
+      var id = parseInt(obj.id).toString(2);
       var dynamic = obj.dynamic;
       var energy = obj.energy;
       switch (dynamic){
@@ -69,7 +69,8 @@ var Adapter  = {
   },
   planet:{
     convertObjToByte:function(obj){
-      var id = obj.id.toString(2);
+      var id = parseInt(obj.id).toString(2);
+
       var command = obj.command;
       switch (command){
         case "run":
@@ -89,29 +90,30 @@ var Adapter  = {
     convertByteToObj:function(byte){
       var obj = {};
       obj.id = parseInt(byte.slice(0,4),2);
+      console.log(byte.slice(0,4));
       let dynamic = byte.slice(4,6);
       let energy  = byte.slice(6,8);
       
       switch (dynamic){
         case "00":
-          obj.dynamic = "AheadDSystem";
+          obj.dynamic = "Ahead";
           break;
         case "01":
-          obj.dynamic = "GallopDSystem";
+          obj.dynamic = "Gallop";
           break;
         case "10":
-          obj.dynamic = "TranscendDSystem";
+          obj.dynamic = "Transcend";
           break;
       }
       switch (energy){
         case "00":
-          obj.energy = "EnergizerESystem";
+          obj.energy = "Energizer";
           break;
         case "01":
-          obj.energy = "LightESystem";
+          obj.energy = "Light";
           break;
         case "10":
-          obj.energy = "PerpetualESystem";
+          obj.energy = "Perpetual";
           break;
       }
       switch (byte.slice(8,12)){

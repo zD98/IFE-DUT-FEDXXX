@@ -17,7 +17,6 @@ DataCenter.prototype = {
   },
   processMsg:function(msg){
     let obj = Adapter.planet.convertByteToObj(msg);
-    console.log(obj);
     this.planet.$monitor.detectMsg(obj);
   }
 };

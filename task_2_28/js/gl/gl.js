@@ -41,7 +41,7 @@ var gl = (function(){
     var objects = [];
 
     var project = Matrix.perspective(Math.PI/2, 400,300,0.1,100);
-    var view = Matrix.lookAt([0,10,-10],[0,0,0],[0,1,0]);
+    var view = Matrix.lookAt([0,20,-20],[0,0,0],[0,1,0]);
     var temp = [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1];
     var pvMatrix = Matrix.multiply(project,view);
 

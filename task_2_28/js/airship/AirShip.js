@@ -33,13 +33,13 @@ Airship.prototype = {
     gl.addObject(this.$ship);
     let count = 0;
     //TODO render and interval and v
-    // setInterval(function(){
-    //
-    //   if(this.$state == "run"){
-    //     count++;
-    //   }
-    //   this.render(count);
-    // }.bind(this),20);
+    this.$renderIntenal = setInterval(function(){
+
+      if(this.$state == "run"){
+        count++;
+      }
+      this.render(count);
+    }.bind(this),20);
 
     this.$internal = setInterval(function(){
       this.$energySystem.charge();
@@ -66,7 +66,10 @@ Airship.prototype = {
   },
   //绘图用render
   render:function(count){
-    let a = Math.PI*2/360*count;
+
+    let n = 360/this.$dynamicSystem.getVelocity()*50;
+
+    let a = Math.PI*2/n*count;
     let x = Math.cos(a)*5*this.$track;
     let y = Math.sin(a)*5*this.$track;
     let z = 0;
@@ -102,7 +105,9 @@ Airship.prototype = {
   //销毁
   destroy:function(){
     clearInterval(this.$internal);
+    clearInterval(this.$renderIntenal);
     this.$internal = null;
+    this.$renderIntenal = null;
     this.$state = "destroy";
     var msg = {
       id:this.$uuid,
@@ -113,12 +118,10 @@ Airship.prototype = {
     };
     msg = Adapter.ship.convertObjToByte(msg);
     this.$emitter.sendMsg(msg);
-    
     this.$energySystem.destroy();
     this.$dynamicSystem.destroy();
     this.$emitter.destroy();
     this.$receiver.destroy();
-    
     AirShipFactory.destroyById(this.$uuid);
     //视图上的销毁
     gl.removeObject(this.$ship);

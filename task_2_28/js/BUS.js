@@ -48,9 +48,13 @@ var BUS = function(){
     },
     removeRegister:function(type,id){
       var subs = subscribers[type];
+      if(subs.length==0){
+        return ;
+      }
       for(let i=0,len=subs.length;i<len;i++){
-        if(subs[i].id = id){
-          console.log(subs.splice(i,1));
+        if(subs[i].id == id){
+          subs.splice(i,1);
+          break;
         }
       }
     }
