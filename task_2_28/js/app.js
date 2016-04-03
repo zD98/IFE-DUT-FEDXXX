@@ -4,7 +4,13 @@
 //程序入口
 
 (function(){
-  
+
+  var sphere = new Sphere(3,32);
+  gl.addObject(sphere);
+  setInterval(function(){
+    gl.render();
+  },20);
+
   var planet = new Planet();
   var director = new Director(planet);
   var addShip = document.querySelector('#add-ship');
