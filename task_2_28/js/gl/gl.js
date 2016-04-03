@@ -85,6 +85,14 @@ var gl = (function(){
       },
       addObject:function(obj){
         objects. push(obj);
+      },
+      removeObject:function(obj){
+        for(let i =0,len = objects.length;i<len;i++){
+          if(objects[i] === obj){
+            objects.splice(i,1);
+            break;
+          }
+        }
       }
     };
   }();

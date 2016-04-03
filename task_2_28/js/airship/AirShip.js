@@ -5,7 +5,7 @@
  * 
  * @constructor
  */
-function Airship (id){
+function Airship (id,track){
   
   this.$state = "stop";
   this.$uuid = id;
@@ -14,6 +14,8 @@ function Airship (id){
   this.$emitter = new Emitter("airship");
   this.$receiver = new Receiver("planet");
   this.$internal = null;
+  this.$ship = null;
+  this.$track = track;
   this.init();
 }
 Airship.prototype = {
@@ -21,12 +23,23 @@ Airship.prototype = {
   init:function(){
     console.log("create Airship");
     this.$receiver.receiveMsg = function(msg){
-      var obj = Adapter.convertBytetoObj(msg);
+      var obj = Adapter.ship.convertByteToObj(msg);
       console.log(obj);
       if(obj.id == this.$uuid){
         this.execute(obj.command);
       }
     }.bind(this);
+    this.$ship = new Ship(0.7,32,32);
+    gl.addObject(this.$ship);
+    let count = 0;
+    //TODO render and interval and v
+    // setInterval(function(){
+    //
+    //   if(this.$state == "run"){
+    //     count++;
+    //   }
+    //   this.render(count);
+    // }.bind(this),20);
 
     this.$internal = setInterval(function(){
       this.$energySystem.charge();
@@ -36,20 +49,31 @@ Airship.prototype = {
       }
       if(this.$state == 'run') {
         this.$dynamicSystem.consumpt();
+        count++;
       }
-
       var msg = {
         id:this.$uuid,
-        command:this.$state,
-        energy:this.$energySystem.getEnergy()
+        dynamic:this.$dynamicSystem.getName(),
+        energy:this.$energySystem.getName(),
+        state:this.$state,
+        left:this.$energySystem.getEnergy()
       };
-      msg = Adapter.convertObjtoByte(msg);
-      this.$emitter.sendMsg(msg)
+      msg = Adapter.ship.convertObjToByte(msg);
+      this.$emitter.sendMsg(msg);
     }.bind(this),1000);
+
+
   },
   //绘图用render
-  render:function(){
-
+  render:function(count){
+    let a = Math.PI*2/360*count;
+    let x = Math.cos(a)*5*this.$track;
+    let y = Math.sin(a)*5*this.$track;
+    let z = 0;
+    this.$ship.identify();
+    this.$ship.rotate(-Math.PI/2,[1,0,0]);
+    this.$ship.rotate(a,[0,1,0]);
+    this.$ship.translate([-x,z,-y]);
   },
   execute:function(command){
     console.log("airship "+command);
@@ -82,10 +106,12 @@ Airship.prototype = {
     this.$state = "destroy";
     var msg = {
       id:this.$uuid,
-      command:this.$state,
-      energy:this.$energySystem.getEnergy()
+      dynamic:this.$dynamicSystem.getName(),
+      energy:this.$energySystem.getName(),
+      state:this.$state,
+      left:this.$energySystem.getEnergy()
     };
-    msg = Adapter.convertObjtoByte(msg);
+    msg = Adapter.ship.convertObjToByte(msg);
     this.$emitter.sendMsg(msg);
     
     this.$energySystem.destroy();
@@ -95,6 +121,7 @@ Airship.prototype = {
     
     AirShipFactory.destroyById(this.$uuid);
     //视图上的销毁
+    gl.removeObject(this.$ship);
   }
 };
 

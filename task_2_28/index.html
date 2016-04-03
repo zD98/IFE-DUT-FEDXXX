@@ -153,24 +153,11 @@
 <script src="js/planet/director-view.js"></script>
 <script>
     var sphere = new Sphere(3,32);
-    var ship = new Ship(0.7,32,32);
     var count = 0;
     gl.addObject(sphere);
-    gl.addObject(ship);
     setInterval(function(){
-        let a = Math.PI*2/360*count;
-        let x = Math.cos(a)*5;
-        let y = Math.sin(a)*5;
-        let z = 0;
-        count++;
-        ship.identify();
-        ship.rotate(-Math.PI/2,[1,0,0]);
-        ship.rotate(a,[0,1,0]);
-        ship.translate([-x,z,-y]);
         gl.render();
     },20);
-
-    //TODO  视图上的添加飞机和销毁飞机  以及能量的变化
 </script>
 </body>
 </html>

@@ -11,12 +11,6 @@ Monitor.prototype = {
 
     //msg.id = 00 msg.state = 00  msg.energy = 35;
     console.log(msg);
-    var obj = {};
-    obj.id = msg.id;
-    obj.energy = "XXX";
-    obj.dynamic = "XXX";
-    obj.state = msg.state;
-    obj.left = msg.energy;
-    MonitorCtrl.detectShip(obj);
+    MonitorCtrl.detectShip(msg);
   }
 };

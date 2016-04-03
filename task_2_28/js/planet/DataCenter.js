@@ -16,12 +16,8 @@ DataCenter.prototype = {
     //And 添加一个什么东西显示控制台？
   },
   processMsg:function(msg){
-
-    let obj = Adapter.convertBytetoObj(msg);
-    let o  = {};
-    o.id = obj.id;
-    o.state = obj.command;
-    o.energy = obj.energy;
-    this.planet.$monitor.detectMsg(o);
+    let obj = Adapter.planet.convertByteToObj(msg);
+    console.log(obj);
+    this.planet.$monitor.detectMsg(obj);
   }
 };

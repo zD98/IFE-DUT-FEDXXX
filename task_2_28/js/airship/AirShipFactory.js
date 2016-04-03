@@ -38,7 +38,7 @@ var  AirShipFactory = function(){
     if(id == null){
       throw "Ships are full"
     }
-    var airship  = new Airship(id);
+    var airship  = new Airship(id,parseInt(id,2)+1);
     idState[id] = airship;
     airship.$dynamicSystem = new types[dynamicSystem](airship);
     airship.$energySystem = new types[energySystem](airship);
