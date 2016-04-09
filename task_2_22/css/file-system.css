@@ -1,0 +1,28 @@
+#root
+{
+	width: 800px;
+	height: 200px;
+	margin: auto;
+	margin-bottom: 10px;
+}
+
+.node
+{
+	display: inline-flex;
+	width: 40%;
+	margin: auto 4%;
+	height: 80%;
+	border: 1px solid #000000;
+	background-color: #FFFFFF;
+}
+
+#controllPanel
+{
+	margin: 5px;
+}
+
+#controllPanel input
+{
+	display: inline-block;
+	margin: 5px;
+}
