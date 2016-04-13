@@ -22,11 +22,11 @@ game.states.boot = function(){
     }
     this.scale.refresh();
 
-    this.state.start('game')
+    this.state.start('hinder')
 
   }
 };
-game.states.game = function(){
+game.states.hero = function(){
   
   var sprite ;
   var distX,distY,moving = false;;
@@ -44,7 +44,7 @@ game.states.game = function(){
     sprite = game.add.sprite(200, 200, bmd);
     sprite.anchor.setTo(0.5,0.5);
     game.physics.arcade.enable(sprite);
-    game.input.onDown.add(move,this)
+    game.input.onDown.add(move,this);
   };
   this.update = function(){
     console.log(moving);
@@ -66,11 +66,36 @@ game.states.game = function(){
 
 };
 
+game.states.hinder = function(){
 
+  var hinder;
+
+  this.preload = function(){
+
+  };
+  this.create = function(){
+    var bmd = game.add.bitmapData(100,100);
+    bmd.ctx.beginPath();
+    bmd.ctx.rect(0,0,100,100,Math.PI*2,false);
+    bmd.ctx.fillStyle = "#ffff00";
+    bmd.ctx.fill();
+    var hinders = game.add.group();
+    for(let i=0;i<5;i++){
+      hinders.create(Math.random()*400,Math.random()*400,bmd);
+    }
+   // hinder = game.add.sprite(100, 100, bmd);
+   //1 hinder.anchor.setTo(0.5,0.5);
+  };
+  this.update = function(){
+
+  }
+};
+
+game.state.add('hinder',game.states.hinder);
 
 
 game.state.add('boot',game.states.boot);
-game.state.add('game',game.states.game);
+game.state.add('hero',game.states.hero);
 //启动游戏
 game.state.start('boot');
 
