@@ -1,0 +1,61 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.one{
+    display: none;
+}
+.two{
+    display: none;
+}
+.two .left{
+    position: absolute;
+    width: 500px;
+    height: 300px;
+    -webkit-clip-path: polygon(0px 0px,66.6% 0px,33.3% 100%,0 100%);
+    clip-path: polygon(0px 0px,66.6% 0px,33.3% 100%,0 100%);
+    shape-outside: polygon(0px 0px,66.6% 0px,33.3% 100%,0 100%);
+    -webkit-shape-outside: polygon(0px 0px,66.6% 0px,33.3% 100%,0 100%);
+}
+
+.two .right{
+    position: absolute;
+    width: 500px;
+    height: 300px;
+    -webkit-clip-path: polygon(66.6% 0,100% 0,100% 100%,33.3% 100%);
+
+    shape-outside: polygon(66.6% 0,100% 0,100% 100%,33.3% 100%);
+    -webkit-shape-outside:polygon(66.6% 0,100% 0,100% 100%,33.3% 100%);
+}
+
+.three{
+    width: 500px;
+    height: 300px;
+}
+.three .responsive{
+    /*position: absolute;*/
+    float: left;
+    clip-path: inset(0 1090px 600px 0);
+    -webkit-clip-path: inset(0 1090px 600px 0);
+
+    shape-outside: inset(0 1090px 600px 0);
+    -webkit-shape-outside:inset(0 1090px 600px 0);
+
+}
+.three .square{
+    position: absolute;
+    clip-path: inset(0 1180px 900px 350px);
+    -webkit-clip-path: inset(0 1530px 900px 0);;
+
+    shape-outside: inset(0 1530px 900px 0);;
+    -webkit-shape-outside:inset(0 1530px 900px 0);
+}
+.four{
+    display: none;
+}
+.five{
+    display: none;
+}
+.six{
+    display: none;
+}
