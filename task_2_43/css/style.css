@@ -2,60 +2,67 @@
     margin: 0;
     padding: 0;
 }
-.one{
-    display: none;
-}
-.two{
-    display: none;
-}
-.two .left{
-    position: absolute;
+.jigsaw {
     width: 500px;
     height: 300px;
-    -webkit-clip-path: polygon(0px 0px,66.6% 0px,33.3% 100%,0 100%);
-    clip-path: polygon(0px 0px,66.6% 0px,33.3% 100%,0 100%);
-    shape-outside: polygon(0px 0px,66.6% 0px,33.3% 100%,0 100%);
-    -webkit-shape-outside: polygon(0px 0px,66.6% 0px,33.3% 100%,0 100%);
+    position: relative;
 }
+.img-container{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+}
+.jigsawO1,.jigsawO2,.jigsawO3,.jigsawO1,.jigsawO5,.jigsawO6{
+    display: none;
+}
+.jigsawO2 .jigsaw-a{
+    clip-path: polygon(0 0, 66.6% 0,33.3% 100%,0 100%);
+    -webkit-clip-path:polygon(0 0, 66.6% 0,33.3% 100%,0 100%);
 
-.two .right{
-    position: absolute;
-    width: 500px;
-    height: 300px;
-    -webkit-clip-path: polygon(66.6% 0,100% 0,100% 100%,33.3% 100%);
+    shape-outside: polygon(0 0, 66.6% 0,33.3% 100%,0 100%);
+    -webkit-shape-outside: polygon(0 0, 66.6% 0,33.3% 100%,0 100%);
+}
+.jigsawO2 .jigsaw-b{
+    clip-path: polygon(66.6% 0,100% 0,100% 100%,33.3% 100%);
+    -webkit-clip-path:polygon(66.6% 0,100% 0,100% 100%,33.3% 100%);
 
     shape-outside: polygon(66.6% 0,100% 0,100% 100%,33.3% 100%);
-    -webkit-shape-outside:polygon(66.6% 0,100% 0,100% 100%,33.3% 100%);
+    -webkit-shape-outside: polygon(66.6% 0,100% 0,100% 100%,33.3% 100%);
+}
+/*width 由JS计算*/
+.jigsawO3 .jigsaw-a{
+    width: 350px;
+    height: 100%;
+}
+.jigsawO3 .jigsaw-b{
+    width: 150px;
+    height: 50%;
+    transform: translateX(350px);
+}
+.jigsawO3 .jigsaw-c{
+    width: 150px;
+    height: 50%;
+    transform: translate(350px,100%);
 }
 
-.three{
-    width: 500px;
-    height: 300px;
+.jigsawO4 .jigsaw-a{
+    width: 50%;
+    height: 50%;
+    transform: translate(0,0);
 }
-.three .responsive{
-    /*position: absolute;*/
-    float: left;
-    clip-path: inset(0 1090px 600px 0);
-    -webkit-clip-path: inset(0 1090px 600px 0);
-
-    shape-outside: inset(0 1090px 600px 0);
-    -webkit-shape-outside:inset(0 1090px 600px 0);
-
+.jigsawO4 .jigsaw-b{
+    width: 50%;
+    height: 50%;
+    transform: translate(100%,0);
 }
-.three .square{
-    position: absolute;
-    clip-path: inset(0 1180px 900px 350px);
-    -webkit-clip-path: inset(0 1530px 900px 0);;
-
-    shape-outside: inset(0 1530px 900px 0);;
-    -webkit-shape-outside:inset(0 1530px 900px 0);
+.jigsawO4 .jigsaw-c{
+    width: 50%;
+    height: 50%;
+    transform: translate(100%,100%);
 }
-.four{
-    display: none;
-}
-.five{
-    display: none;
-}
-.six{
-    display: none;
+.jigsawO4 .jigsaw-d{
+    width: 50%;
+    height: 50%;
+    transform: translate(0,100%);
 }
