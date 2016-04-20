@@ -2,10 +2,10 @@
     margin: 0;
     padding: 0;
 }
-.jigsaw {
+.puzzle {
+    position: relative;
     width: 500px;
     height: 300px;
-    position: relative;
 }
 .img-container{
     width: 100%;
@@ -13,17 +13,18 @@
     position: absolute;
     overflow: hidden;
 }
-.jigsawO1,.jigsawO2,.jigsawO3,.jigsawO1,.jigsawO5,.jigsawO6{
-    display: none;
+.puzzleO1 .puzzle-1{
+    width: 100%;
+    height: 100%;
 }
-.jigsawO2 .jigsaw-a{
+.puzzleO2 .puzzle-1{
     clip-path: polygon(0 0, 66.6% 0,33.3% 100%,0 100%);
     -webkit-clip-path:polygon(0 0, 66.6% 0,33.3% 100%,0 100%);
 
     shape-outside: polygon(0 0, 66.6% 0,33.3% 100%,0 100%);
     -webkit-shape-outside: polygon(0 0, 66.6% 0,33.3% 100%,0 100%);
 }
-.jigsawO2 .jigsaw-b{
+.puzzleO2 .puzzle-2{
     clip-path: polygon(66.6% 0,100% 0,100% 100%,33.3% 100%);
     -webkit-clip-path:polygon(66.6% 0,100% 0,100% 100%,33.3% 100%);
 
@@ -31,38 +32,91 @@
     -webkit-shape-outside: polygon(66.6% 0,100% 0,100% 100%,33.3% 100%);
 }
 /*width 由JS计算*/
-.jigsawO3 .jigsaw-a{
-    width: 350px;
+.puzzleO3 .puzzle-1{
     height: 100%;
 }
-.jigsawO3 .jigsaw-b{
-    width: 150px;
+.puzzleO3 .puzzle-2{
     height: 50%;
-    transform: translateX(350px);
+    /*transform: translateX(350px);*/
 }
-.jigsawO3 .jigsaw-c{
-    width: 150px;
+.puzzleO3 .puzzle-3{
     height: 50%;
-    transform: translate(350px,100%);
+    transform: translateY(100%);
 }
 
-.jigsawO4 .jigsaw-a{
+.puzzleO4 .puzzle-1{
     width: 50%;
     height: 50%;
     transform: translate(0,0);
 }
-.jigsawO4 .jigsaw-b{
+.puzzleO4 .puzzle-2{
     width: 50%;
     height: 50%;
     transform: translate(100%,0);
 }
-.jigsawO4 .jigsaw-c{
+.puzzleO4 .puzzle-3{
     width: 50%;
     height: 50%;
     transform: translate(100%,100%);
 }
-.jigsawO4 .jigsaw-d{
+.puzzleO4 .puzzle-4{
     width: 50%;
     height: 50%;
     transform: translate(0,100%);
 }
+
+.puzzleO5 .puzzle-1{
+    width: 66.7%;
+    height: 66.7%;
+
+}
+.puzzleO5 .puzzle-2{
+    width: 33.3%;
+    transform: translate(200%,0);
+}
+.puzzleO5 .puzzle-3{
+    width: 33.3%;
+    height: 33.3%;
+    transform: translate(0,200%);
+}
+.puzzleO5 .puzzle-4{
+    width: 33.3%;
+    height: 33.3%;
+    transform: translate(100%,200%);
+}
+.puzzleO5 .puzzle-5{
+    width: 33.3%;
+    height: 134px;
+    transform: translate(200%,166px);
+}
+
+.puzzleO6 .puzzle-1{
+    width: 66.7%;
+    height: 66.7%;
+}
+.puzzleO6 .puzzle-2{
+    width: 33.3%;
+    height: 33.3%;
+    transform: translate(200%,0);
+}
+.puzzleO6 .puzzle-3{
+    width: 33.3%;
+    height: 33.3%;
+    transform: translate(200%,100%);
+}
+.puzzleO6 .puzzle-4{
+    width: 33.3%;
+    height: 33.3%;
+    transform: translate(0,200%);
+}
+.puzzleO6 .puzzle-5{
+    width: 33.3%;
+    height: 33.3%;
+    transform: translate(100%,200%);
+}
+.puzzleO6 .puzzle-6{
+    width: 33.3%;
+    height: 33.3%;
+    transform: translate(200%,200%);
+}
+
