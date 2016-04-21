@@ -12,6 +12,11 @@
     height: 100%;
     position: absolute;
     overflow: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+
+    transition: all 0.5s;
 }
 .puzzleO1 .puzzle-1{
     width: 100%;
@@ -37,7 +42,6 @@
 }
 .puzzleO3 .puzzle-2{
     height: 50%;
-    /*transform: translateX(350px);*/
 }
 .puzzleO3 .puzzle-3{
     height: 50%;
@@ -86,13 +90,13 @@
 }
 .puzzleO5 .puzzle-5{
     width: 33.3%;
-    height: 134px;
-    transform: translate(200%,166px);
+    /*transform: translate(200%,166px);*/
 }
 
 .puzzleO6 .puzzle-1{
     width: 66.7%;
     height: 66.7%;
+
 }
 .puzzleO6 .puzzle-2{
     width: 33.3%;
@@ -102,17 +106,17 @@
 .puzzleO6 .puzzle-3{
     width: 33.3%;
     height: 33.3%;
-    transform: translate(200%,100%);
+    transform: translate(0,200%);
 }
 .puzzleO6 .puzzle-4{
     width: 33.3%;
     height: 33.3%;
-    transform: translate(0,200%);
+    transform: translate(100%,200%);
 }
 .puzzleO6 .puzzle-5{
     width: 33.3%;
     height: 33.3%;
-    transform: translate(100%,200%);
+    transform: translate(200%,100%);
 }
 .puzzleO6 .puzzle-6{
     width: 33.3%;
