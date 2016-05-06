@@ -8,7 +8,7 @@
       BARREL: 3     // 木桶布局
     };
     this.el = null;
-    this.width = config.width || 1000;
+    this.width = config.width || 500;
     this.children = null;
     this.NUM = 0;
     this.boot();
@@ -21,6 +21,11 @@
     this.el.classList.add('barrel');
     this.el.style.width = this.width + 'px';
     this.children = [];
+    this.margin = 0;
+    this.left = 10;
+    this.top = 10;
+    this.targetRowHeight = 300;
+    this.targetRowHeightTolerance = 0.25;
   };
   ZdAlbum.prototype.setImages = function (images, options) {
     //1.获得container width
@@ -29,16 +34,44 @@
     //4.按比例计算出行高(对行高有个判断 如若行太高或太低就增减相应的图片数 &&图片数不够的话 占位一行 此时通过minHeight计算)
     //5.生成每个元素
     //6.appendChild
-     
+    let top=this.top;
     while(images.length){
       //TODO:
       //1.改进选取图片个数的算法
       //2.当最后一行个数不够时 可以不填满整行
-      let lineNum = Math.floor(Math.random()*6+1);  
-      let imgs = images.splice(0,lineNum);
-      let rw = getRatio(imgs,0);
-      let lineHeight = this.width/rw;
-      this.setLineImages(imgs,lineHeight); 
+      //let rowNum = Math.floor(Math.random()*6+1);  
+      let result = generateRow.call(this,images);
+      let imgs = images.splice(0,result.rowNum);
+        
+      top+=(this.top+this.setRowImages(imgs,result.rh,top)); 
+     
+    }
+    function generateRow(imgs){
+        let rw = 0,w = this.width-2*this.left;
+        let rh = this.targetRowHeight;
+        let minh = rh*(1-this.targetRowHeightTolerance);
+        let maxh = rh*(1+this.targetRowHeightTolerance);
+        let rowNum = -1;     
+        for(let i=0;i<imgs.length;i++){
+            
+            let nw = rw +imgs[i].ratio;
+            let nh = w/nw;
+            if(nh<minh){  
+                rowNum = i;
+                break;
+            }
+           rw = nw;
+            rh = nh; 
+            w -=this.left;
+        }
+        if(rowNum == -1){
+            rowNum = imgs.length;
+            rh = this.targetRowHeight;
+        }
+        return {
+            rh,
+            rowNum
+        }; 
     }
     function getRatio(imgs,tag){
         //0 IS A BUG;
@@ -51,25 +84,30 @@
     }
     document.body.appendChild(this.el);
   };
-  ZdAlbum.prototype.addImage = function (image, lineHeight) {
-    //image.radio lineHeight
-    let w = lineHeight*image.ratio,
-        h = lineHeight;
+  ZdAlbum.prototype.addImage = function (image, rowHeight, left,top) {
+    //image.radio rowHeight
+    let w = rowHeight*image.ratio,
+        h = rowHeight;
     let el = document.createElement('div');
     el.classList.add('barrel-item');
     el.style.width = w+'px';
     el.style.height = h+'px';
+    el.style.left = left +'px';
+    el.style.top = top+'px';
     let img = document.createElement('div');
     img.classList.add('img-container');
     img.style.backgroundImage = `url(${image.url})`;
     el.appendChild(img);
     this.el.appendChild(el);
+    return w;
   };
 
-  ZdAlbum.prototype.setLineImages =function(images, lineHeight){
-       images.forEach(function(img){
-            this.addImage(img,lineHeight);
+  ZdAlbum.prototype.setRowImages =function(images, rh,top){
+      let left = this.left; 
+      images.forEach(function(img){
+           left += (this.left+this.addImage(img,rh,left,top));
        }.bind(this)) 
+      return rh;
   }
   window.ZdAlbum = ZdAlbum;
   //默认是cover 若用户输入了设置就按照用户设置的比例
