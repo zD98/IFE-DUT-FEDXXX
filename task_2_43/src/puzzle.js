@@ -1,4 +1,4 @@
-function Puzzle(config) {
+function Puzzle(){
     this.el = null;
     this.width = config.width || 500;
     this.height = config.height || 300;
@@ -7,21 +7,17 @@ function Puzzle(config) {
     this.NUM = 0;
     this.init();
 }
-Puzzle.prototype.init = function() {
+Puzzle.prototype.init = () => {
     this.layout = 'PUZZLE';
     //如果传入了ele 就用传入的ele 当容器
     this.el = document.createElement('div');
-    this.el.classList.add('puzzle');
+    this.el.classList.add('puzzle-item');
     this.el.style.width = this.width + 'px';
     this.el.style.height = this.height + 'px'
     this.children = [];
 };
 //采取这样的方式  就是拼图这里有一个生成占位的function
-//另一种是根据不同的配置生成一堆拼图
-Puzzle.prototype.setImages = (images)=>{
-    
-}
-Puzzle.prototype.generatePuzzle = (images)=>{
+Puzzle.prototype.generatePuzzle = (images) => {
     let el = document.createElement('div');
     let num = this.NUM = images.length > 6 ? 6 : images.length;
     let frag = document.createDocumentFragment();
@@ -43,8 +39,7 @@ Puzzle.prototype.setImage = function(images) {
     this.el.appendChild(frag);
     this.el.classList.add('puzzleO' + num);
 };
-Puzzle.prototype.addImage = function(image, config) {
-    let layout = this.layout;
+Puzzle.prototype.addImage = function(image) {
     //只有puzzle
     if (this.NUM > 6) {
         throw 'the num > 6';
@@ -58,6 +53,10 @@ Puzzle.prototype.addImage = function(image, config) {
     this.specialize();
     return true;
 }
+Puzzle.prototype.removeImage = (image)=>{
+
+}
+
 Puzzle.prototype.specialize = function() {
     let num = this.NUM;
     for (let i = 0; i < num; i++) {
@@ -84,10 +83,6 @@ function addImage(frag, url, inx) {
 function setImageClass(i) {
     this.classList.add('img-container');
     this.classList.add('puzzle-' + (i + 1));
-}
-
-function setImageUrl(url) {
-    this.style.backgroundImage = `url(${url})`;
 }
 
 function _specialize(el, container, inx) {
@@ -132,3 +127,4 @@ function _specialize(el, container, inx) {
         }
     }
 }
+export {Puzzle};
