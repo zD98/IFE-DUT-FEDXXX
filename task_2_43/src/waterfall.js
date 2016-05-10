@@ -1,7 +1,5 @@
 function ZdAlbum(config) {
     this.el = null;
-    // the container's columns
-    //{el:el,curHeight:Num}
     this.columns = [];
     this.images = [];
     this.init();

@@ -1,3 +1,5 @@
+import {setImageUrl} from './common.js';
+
 function Puzzle(){
     this.el = null;
     this.width = config.width || 500;

@@ -1,3 +1,5 @@
+import {generateImgContainer} from './common.js';
+
 function Barrel(config) {
     config = config || {};
     this.el = null;
@@ -47,10 +49,8 @@ Barrel.prototype.addImage = function(image, rowHeight, left, top) {
     el.style.height = h + 'px';
     el.style.left = left + 'px';
     el.style.top = top + 'px';
-    let img = document.createElement('div');
-    img.classList.add('img-container');
-    img.style.backgroundImage = `url(${image.url})`;
-    el.appendChild(img);
+    let img = generateImgContainer(image);
+    el.appendChild(img); 
     this.el.appendChild(el);
     return w;
 };

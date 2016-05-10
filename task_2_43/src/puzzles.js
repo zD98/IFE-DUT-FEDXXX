@@ -1,4 +1,3 @@
-import {setImageUrl} from './common.js';
 import {Puzzle} from './puzzle.js';
 function Puzzles() {
     this.el = null;
