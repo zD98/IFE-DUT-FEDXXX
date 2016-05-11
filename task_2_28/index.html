@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .btn{
+            width: 100px;;
+            margin: 10px;
+        }
+        .cosmos{
+            width: 600px;
+            float: left;
+        }
+        .container{
+            display: block;
+        }
+        .monitor{
+            float: left;
+            margin: 10px;
+            margin-left: 40px;;
+        }
+        .container:after{
+
+            clear: both;
+            content: ".";
+            height: 0;
+            display: block;
+            visibility: hidden;
+        }
+        .screen .head{
+            background: #999;
+        }
+        .screen .row {
+            position: relative;
+            width: 500px;;
+        }
+        .row .col{
+            float: left;
+            width: 100px;
+            text-align: center;
+            outline: 1px #999 solid;
+        }
+        .newShip{
+            margin: 10px;;
+        }
+        .newShip .system{
+
+        }
+        .newShip .system-item{
+            width: 250px;;
+           display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="container">
+        <div class="cosmos">
+            <canvas id="canvas"></canvas>
+        </div>
+        <div class="monitor">
+            <div class="screen">
+                <div class="head row">
+                    <div class="col air">飞船</div>
+                    <div class="col dynamic">动力系统</div>
+                    <div class="col energy">能源系统</div>
+                    <div class="col state">当前飞行状态</div>
+                    <div class="col left">剩余能耗</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="newShip">
+            <div class="system dynamicSystem">
+                动力选择系统
+                <div class="system-item">
+                    <input id="ahead" type="radio" name="dynamic" value="AheadDSystem">
+                    <label for="ahead">前进号(速率30px/s,能耗5%/s)</label>
+                </div>
+                <div class="system-item">
+                    <input id="gallop" type="radio" name="dynamic" value="GallopDSystem">
+                    <label for="gallop">奔腾号(速率50px/s,能耗7%/s)</label>
+                </div>
+                <div class="system-item">
+                    <input id="transcend" type="radio" name="dynamic" value="TranscendDSystem">
+                    <label for="transcend">超越号(速度80px/s,能耗9%/s)</label>
+                </div>
+            </div>
+            <div class="system energySystem">
+                能源系统选择
+                <div class="system-item">
+                    <input id="energizer" type="radio" name = "energy" value="EnergizerESystem">
+                    <label for="energizer">劲量型(补充能源速度2%/s)</label>
+                </div>
+                <div class="system-item">
+                    <input id="light" type="radio" name = "energy" value="LightESystem">
+                    <label for="light">光能型(补充能源速度3%/s)</label>
+                </div>
+                <div class="system-item">
+                    <input id="perpetual" type="radio" name = "energy" value="PerpetualESystem">
+                    <label for="perpetual">永久型(补充能源速度4%/s)</label>
+                </div>
+            </div>
+            <button id="add-ship" class="btn">创建新飞船</button>
+        </div>
+        <div class="director">
+
+        </div>
+    </div>
+</div>
+<script id="vertexShader" type="x-shader/x-vertex">
+  attribute vec3 vPosition;
+  attribute vec4 vColor;
+  attribute vec3 vNormal;
+  uniform mat4 MVPMatrix;
+  uniform mat4 invMatrix;
+  uniform vec3 lightDirection;
+  varying vec4 Color;
+  void main(void) {
+    vec3 invLight = normalize(invMatrix*vec4(lightDirection,1.0)).xyz;
+    float diffuse = clamp(dot(vNormal,invLight),0.2,1.0);
+    Color = vColor*vec4(vec3(diffuse),1.0);
+    gl_Position = MVPMatrix*vec4(vPosition,1.0);
+  }
+</script>
+<script id="fragmentShader" type="x-shader/x-fragment">
+    precision mediump float;
+    varying vec4 Color;
+    void main(){
+          gl_FragColor = Color;
+    }
+</script>
+<!--<script src="js/gl/Vector.js"></script>-->
+<!--<script src="js/gl/Matrix.js"></script>-->
+<!--<script src="js/gl/geometry.js"></script>-->
+<!--<script src="js/gl/gl.js"></script>-->
+<!--<script src="js/BUS.js"></script>-->
+<!--<script src="js/Emitter.js"></script>-->
+<!--<script src="js/Receiver.js"></script>-->
+<!--<script src="js/adapter.js"></script>-->
+<!--<script src="js/airship/AirShip.js"></script>-->
+<!--<script src="js/airship/AirShipFactory.js"></script>-->
+<!--<script src="js/airship/DynamicSystem.js"></script>-->
+<!--<script src="js/airship/EnergySystem.js"></script>-->
+<!--<script src="js/planet/monitor-view.js"></script>-->
+<!--<script src="js/planet/Monitor.js"></script>-->
+<!--<script src="js/planet/DataCenter.js"> </script>-->
+<!--<script src="js/planet/Planet.js"></script>-->
+<!--<script src="js/planet/director.js"></script>-->
+<!--<script src="js/planet/director-view.js"></script>-->
+<script src="dist/zgl.js"></script>
+<script src="dist/common.js"></script>
+<script src="dist/airship.js"></script>
+<script src="dist/planet.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
